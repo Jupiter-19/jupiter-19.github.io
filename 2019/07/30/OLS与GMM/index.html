@@ -18,10 +18,10 @@
     <link rel="dns-prefetch" href="http://yoursite.com">
     <!--SEO-->
 
-    <meta name="keywords" content>
+    <meta name="keywords" content="数学与统计">
 
 
-    <meta name="description" content>
+    <meta name="description" content="线性回归​    在金融等领域，线性回归模型经常被用以解释多个自变量和一个因变量之间的关系$$y_i = \beta_0+\beta_1x_{i1}+\beta_2x_{i2}+\beta_3x...">
 
 
 
@@ -33,7 +33,7 @@
     <!--Title-->
 
 
-<title>分类: 杂谈与爱好 | ZhangShaojie&#39;s Blog</title>
+<title>OLS与GMM | ZhangShaojie&#39;s Blog</title>
 
 
     <link rel="alternate" href="/atom.xml" title="ZhangShaojie&#39;s Blog" type="application/atom+xml">
@@ -152,65 +152,110 @@
     <section class="content-wrap">
         <div class="container">
             <div class="row">
-                <main class="col-md-8 main-content ">
-                    <ol class="breadcrumb">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="OLS与GMM">
+            
+	            OLS与GMM
+            
+        </h1>
+        <div class="post-meta">
     
-    
-        <li>
-            杂谈与爱好
-        </li>
+        <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+            
+        </span>
     
 
+    
+        <span class="fa-wrap">
+            <i class="fa fa-tags"></i>
+            <span class="tags-meta">
+                
+                    <a class="tag-link" href="/tags/数学与统计/">数学与统计</a>
+                
+            </span>
+        </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2019/07/30</span>
+        </span>
+        
+    
+</div>
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <h3 id="线性回归"><a href="#线性回归" class="headerlink" title="线性回归"></a>线性回归</h3><p>​    在金融等领域，线性回归模型经常被用以解释多个自变量和一个因变量之间的关系<br>$$<br>y_i = \beta_0+\beta_1x_{i1}+\beta_2x_{i2}+\beta_3x_{i3}+\cdots +\beta_n x_{in} + \varepsilon_i,\qquad i=1,2,\cdots,m<br>$$<br>​    该模型的假定显然有诸多的问题，但足够简洁使得我们可以计算，也不容易出现过拟合现象（$n\ll m$，否则需要使用LASSO等方法对数据进行降维处理）. </p>
+<p>​    进一步，我们假定$\varepsilon_i $服从分布$N(0,\sigma_i^2)$. 对自变量矩阵增广处理：</p>
+<p><img src="matrix.png" alt="matrix"></p>
+<p>从而得矩阵形式<br>$$<br>Y = X\beta+\varepsilon<br>$$</p>
+<h3 id="最小二乘法"><a href="#最小二乘法" class="headerlink" title="最小二乘法"></a>最小二乘法</h3><p>​    最小二乘法(OLS, ordinary least squares)的目标为求解下面的最优化问题<br>$$<br>\hat \beta = \operatorname{argmin}_{\theta \in \mathbb R^{n+1}}  E | Y-X\beta |_2^2<br>$$<br>由于$\dfrac{\partial }{\partial \beta}E|Y-X\beta|_2^2  =-2 E X^T(Y-X\beta) = 0$，即有$X^TX \beta = X^TY$，若$X^TX$非退化（一般都能成立，$n\ll m$时），从而$\beta = (X^TX)^{-1} X^TY$.</p>
+<h3 id="广义矩估计"><a href="#广义矩估计" class="headerlink" title="广义矩估计"></a>广义矩估计</h3><p>​    广义矩估计(GMM, generalized method of moments)相较于OLS、GLS等估计方法更为宽泛. 注意到OLS的本质为<br>$$<br>E X^T(Y-X^T\beta)=0.<br>$$<br>一阶矩估计(MM, moment method)的结果就是OLS，而考虑一般的矩的方法就是GMM:<br>$$<br>Ef(Y-X^T\beta) = 0.<br>$$<br>可以取矩条件$f(Y-X^T\beta) = X^T(Y-X^T\beta) ^{3}$，此处幂次运算为矩阵每个元素的幂次运算. </p>
+<p>​    现在考虑基础的线性估计方法<br>$$<br>E[Y-X^T\beta | Z] =0 \ \ \Longrightarrow \  \ EZ^T(Y-X^T\beta) =0.<br>$$<br>此时考虑的最优化函数为<br>$$<br>Q(\beta) = \left[\frac1n Z^T(Y-X^T\beta)\right]^T W_n \left[\frac1n Z^T(Y-X^T\beta)\right]<br>$$<br>$W_n$为权值函数. 广义矩估计下的最优权函数$W_n$为${\frac1n[Z^T(Y-X^T\beta)]^T[Z^T(Y-X^T\beta)]}^{-1}$. 不过一般来说，取$W_n=I_n$也足够了. 最优的$\beta$值有显式表达式<br>$$<br>\widehat{\beta}<em>{\mathrm{GMM}} = \left[X ^T ZW</em>{N}Z^TX\right]^{-1}X ^TZW_{N}Z^TY.<br>$$<br>​    再进一步假定残差项$\varepsilon_i$同方差，则根据极大似然估计(MLE, maximum likelihood estimation)，有$\sigma$的估计<br>$$<br>\hat\sigma^2  = \overline {\varepsilon^2} - {\overline \varepsilon}^2.<br>$$<br>GMM很重要的一步是如何选取合适的矩条件，这需要对问题变量的实际意义分析才能恰当的得到.</p>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><ol>
+<li>《Microeconomics Methods And Applications》, Chapter6, <a href="http://www.centroportici.unina.it/centro/Cameron&Trivedi.pdf" target="_blank" rel="noopener">Link</a>.</li>
+<li>知乎相关回答 <a href="https://www.zhihu.com/question/41312883/answer/91484566" target="_blank" rel="noopener">Link</a>.</li>
+<li>GMM收敛性的证明论文 <a href="http://lib.cufe.edu.cn/upload_files/other/3_20140520102219_Large%20Sample%20Properties%20of%20Generalized%20Method%20of%20Moments%20Estimators.pdf" target="_blank" rel="noopener">Link</a>.</li>
 </ol>
 
-
-    <article class="post">
-        
-        <div class="post-content">
-            <div class="post-head home-post-head">
-                <h1 class="post-title">
-                    <a href="/2019/07/18/持仓列表/">持仓列表</a>
-                </h1>
-                <div class="post-meta">  &bull;
-                    <time class="post-date" datetime="" title="">
-                        2019年07月18日
-                    </time>
-                </div>
-            </div>
-            <p class="brief">
-                
-                    Last modified: Jul. 29, 2019.
-当前持仓
-
-
-股票名称
-股票代码
-买入成本
-当前价
-数量
-盈亏率
-
-
-
-浙江医药
-600216.SH
-9.023
-11.82
-300股
-31.063%
-
-
-京东方A
-0007...
-                
-            </p>
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="https://jupiter-19.github.io/" target="_blank">Jupiter's Blog</a>
+            
         </div>
-    </article>
- 
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+    
+        <a href="/2019/07/25/基础数学课程知识大纲/" class="next-post btn btn-default" title='基础数学课程知识大纲'>
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">基础数学课程知识大纲</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
 
 
+    <div id="comments">
+        
+	<link rel="stylesheet" href="https://cdn.bootcss.com/gitalk/1.4.1/gitalk.min.css">
+<script src="//cdn.bootcss.com/gitalk/1.4.1/gitalk.min.js"></script>
+<script src="//cdn.bootcss.com/blueimp-md5/2.9.0/js/md5.min.js"></script>
+
+<div id="gitalk-container"></div>
+<script type="text/javascript">
+    var gitalk = new Gitalk({
+        // Gitalk配置
+        language: "zh-CN",
+        clientID: "79ce199a43614be97674",
+        clientSecret: "c68e11a8bb3ced0b9c95cb40f9a9335ba5322189",
+        repo: "blogSourse",
+        owner: "Jupiter-19",
+        admin: ["Jupitet-19"],
+        id: md5(location.pathname),
+        distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+</script>
 
 
+    </div>
 
 
 
@@ -218,123 +263,14 @@
 
                 </main>
                 
-                    
-    <aside class="col-md-4 sidebar">
-        
-        
+                    <aside id="article-toc" role="navigation" class="col-md-4">
     <div class="widget">
-        <h3 class="title">搜索</h3>
-        <div id="search-form">
-            <div id="result-mask" class="hide"></div>
-            <div class="search-area">
-                
-                
-                    <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Google Search"><button type="submit" class="search-form-submit">谷歌搜索</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
-                
-            </div>
-            <div id="result-wrap" class="hide">
-                <div id="search-result"></div>
-            </div>
-            <div class="hide">
-                <template id="search-tpl">
-                    <div class="item">
-                        <a href="/{path}" title="{title}">
-                            <div class="title">{title}</div>
-                            <div class="content">{content}</div>
-                        </a>
-                    </div>
-                </template>
-            </div>
-        </div>
-    </div>
-
+        <h3 class="title">文章目录</h3>
         
-        
-    <div class="widget">
-        <h3 class="title">网站公告</h3>
-        <div class="notification">
-            <p>
-    博客建站：<a href="https://jupiter-19.github.io/2019/07/15/about-me/" title="" target="_blank">About Me</a> <br/>
-    简书主页：<a href="https://www.jianshu.com/u/0a38bee13c53" title="" target="_blank">Jianshu Homepage</a> <br/>
-    持仓列表：<a href="https://jupiter-19.github.io/2019/07/18/%E6%8C%81%E4%BB%93%E5%88%97%E8%A1%A8/">Stocks list</a><br/>
-</p>
-        </div>
-    </div>
-
-        
-        
-    <div class="widget">
-      <h3 class="title">社交</h3> 
-        <div class="content social">
-            
-	            <a href="//github.com/Jupiter-19" rel="external nofollow" title="Github" target="_blank">
-			    	<i class="git fa fa-git"></i>
-			    </a>
-            
-	            <a href="mailto:jupiter19@zju.edu.cn" rel="external nofollow" title="邮箱" target="_blank">
-			    	<i class="envelope-o fa fa-envelope-o"></i>
-			    </a>
-            
-	            <a href="1550124323" rel="external nofollow" title="联系QQ" target="_blank">
-			    	<i class="qq fa fa-qq"></i>
-			    </a>
-            
-	            <a href="https://www.facebook.com/profile.php?id=100039250326917" rel="external nofollow" title="Facebook" target="_blank">
-			    	<i class="facebook-official fa fa-facebook-official"></i>
-			    </a>
-            
-        </div>
-    </div>
-
-
-        
-        
-    <div class="widget">
-        <h3 class="title">分类</h3>
-        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/技术与工具/"><i class="fa" aria-hidden="true">技术与工具</i></a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/数学与统计/"><i class="fa" aria-hidden="true">数学与统计</i></a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/杂谈与爱好/"><i class="fa" aria-hidden="true">杂谈与爱好</i></a><span class="category-list-count">1</span></li></ul>
-    </div>
-
-
-        
-        
-  <div class="widget">
-    <h3 class="title">标签云</h3>
-    <div class="content tag-cloud">
-        
-            <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/python/" style="font-size: 10px;">python</a> <a href="/tags/投资/" style="font-size: 10px;">投资</a> <a href="/tags/数学与统计/" style="font-size: 10px;">数学与统计</a>
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#线性回归"><span class="toc-text">线性回归</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#最小二乘法"><span class="toc-text">最小二乘法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#广义矩估计"><span class="toc-text">广义矩估计</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参考"><span class="toc-text">参考</span></a></li></ol>
         
     </div>
-  </div>
-
-
-        
-        
-    <div class="widget">
-        <h3 class="title">友链</h3>
-        <div class="content friends-link">
-        
-            <a href="https://hexo.io/zh-cn/" class="fa" target="_blank">Hexo官网</a>
-        
-            <a href="http://www.math.zju.edu.cn/" class="fa" target="_blank">浙大数学学院</a>
-        
-            <a href="http://210.32.137.90/s/lib/libtb/show/415" class="fa" target="_blank">数学数据库</a>
-        
-            <a href="http://guba.eastmoney.com/" class="fa" target="_blank">股吧</a>
-        
-            <a href="https://xueqiu.com/" class="fa" target="_blank">雪球财经</a>
-        
-            <a href="https://tushare.pro/" class="fa" target="_blank">tushare金融数据</a>
-        
-            <a href="https://www.huobi.br.com/zh-cn/" class="fa" target="_blank">火币全球站</a>
-        
-            <a href="https://www.juzimi.com" class="fa" target="_blank">句子迷</a>
-        
-        </div>
-    </div>
-
-
-        
-    </aside>
+</aside>
 
                 
             </div>
