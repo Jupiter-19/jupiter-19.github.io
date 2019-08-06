@@ -21,7 +21,8 @@
     <meta name="keywords" content>
 
 
-    <meta name="description" content>
+    <meta name="description" content="PART I: BASIC CONCEPTSChap1.1: AFFINE SETThm1.3
+Given $b \in \mathbb R^m$ and $m\times n$ real ma...">
 
 
 
@@ -33,7 +34,7 @@
     <!--Title-->
 
 
-<title>标签: 投资 | ZhangShaojie&#39;s Blog</title>
+<title>凸分析学习笔记 | ZhangShaojie&#39;s Blog</title>
 
 
     <link rel="alternate" href="/atom.xml" title="ZhangShaojie&#39;s Blog" type="application/atom+xml">
@@ -152,64 +153,117 @@
     <section class="content-wrap">
         <div class="container">
             <div class="row">
-                <main class="col-md-8 main-content ">
-                    <ol class="breadcrumb">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="凸分析学习笔记">
+            
+	            凸分析学习笔记
+            
+        </h1>
+        <div class="post-meta">
     
-    
-        <li>
-            投资
-        </li>
-    
+        <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+            <a class="category-link" href="/categories/数学与统计/">数学与统计</a>
+        </span>
     
 
-</ol>
+    
+        <span class="fa-wrap">
+            <i class="fa fa-tags"></i>
+            <span class="tags-meta">
+                
+            </span>
+        </span>
+    
 
-
-    <article class="post">
+    
         
-        <div class="post-content">
-            <div class="post-head home-post-head">
-                <h1 class="post-title">
-                    <a href="/2019/07/18/持仓列表/">持仓列表</a>
-                </h1>
-                <div class="post-meta">  &bull;
-                    <time class="post-date" datetime="" title="">
-                        2019年07月18日
-                    </time>
-                </div>
-            </div>
-            <p class="brief">
-                
-                    Last modified: Aug. 02, 2019.
-当前持仓
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2019/08/06</span>
+        </span>
+        
+    
+</div>
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <h2 id="PART-I-BASIC-CONCEPTS"><a href="#PART-I-BASIC-CONCEPTS" class="headerlink" title="PART I: BASIC CONCEPTS"></a>PART I: BASIC CONCEPTS</h2><h3 id="Chap1-1-AFFINE-SET"><a href="#Chap1-1-AFFINE-SET" class="headerlink" title="Chap1.1: AFFINE SET"></a>Chap1.1: AFFINE SET</h3><p><strong>Thm1.3</strong></p>
+<p>Given $b \in \mathbb R^m$ and $m\times n$ real matrix $B$, the set<br>$$<br>M = { x\in\mathbb R^n | Bx=b }<br>$$<br>is an affine set in $\mathbb R^n$. Moreover, every affine set may be represented in this way.</p>
+<p><strong>Proof</strong></p>
+<p>$Bx =b$, $X= {x\in\mathbb R^n | Bx=0}$. We have $M=x+X$.</p>
+<hr>
+<p><strong>Def</strong></p>
+<p><code>affine transformation</code> $T((1-\lambda)x+\lambda y) = (1-\lambda)Tx + \lambda Ty$.</p>
+<hr>
+<p><strong>Thm1.5</strong></p>
+<p>The affine transformations from $\mathbb R^n$ to $\mathbb R^m$ are the mappings $T$ of the form $Tx=Ax+a$, where $A$ is a linear transformation and $a\in\mathbb R^n$.</p>
+<hr>
+<p><strong>Corollary 1.6.1</strong></p>
+<p>Let $M_1$ and $M_2$ be any two affine sets in $\mathbb R^n$ of the same dimension. Then there exists a one-to-one affine transformation $T$ of $\mathbb R^n$ onto inself such that $TM_1=M_2$.</p>
+<h3 id="Chap1-2-CONVEX-SETS-AND-CONES"><a href="#Chap1-2-CONVEX-SETS-AND-CONES" class="headerlink" title="Chap1.2: CONVEX SETS AND CONES"></a>Chap1.2: CONVEX SETS AND CONES</h3><p><strong>Thm 2.2</strong> </p>
+<p>A subset of $\mathbb R^n$ is convex if and only if it contains all the convex combinations of its elements.</p>
+<hr>
+<p><strong>Def</strong></p>
+<p><code>cone</code> $\lambda x \in K$ when $x\in K$ and $\lambda&gt;0$.</p>
+<hr>
+<p><strong>Thm 2.7</strong></p>
+<p>Let $K$ be a convex cone containing 0. Then there is a smallest subspace containing K, namely<br>$$<br>K-K = {x-y|x\in K,y\in K} = \text{aff}~ K<br>$$</p>
 
-
-股票名称
-股票代码
-买入成本
-当前价
-数量
-盈亏率
-
-
-
-浙江医药
-600216.SH
-9.023
-10.79
-300股
-19.626%
-
-
-京东方A
-0007...
-                
-            </p>
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="https://jupiter-19.github.io/" target="_blank">Jupiter's Blog</a>
+            
         </div>
-    </article>
- 
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+    
+        <a href="/2019/07/30/OLS与GMM/" class="next-post btn btn-default" title='OLS与GMM'>
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">OLS与GMM</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
 
 
+    <div id="comments">
+        
+	<link rel="stylesheet" href="https://cdn.bootcss.com/gitalk/1.4.1/gitalk.min.css">
+<script src="//cdn.bootcss.com/gitalk/1.4.1/gitalk.min.js"></script>
+<script src="//cdn.bootcss.com/blueimp-md5/2.9.0/js/md5.min.js"></script>
+
+<div id="gitalk-container"></div>
+<script type="text/javascript">
+    var gitalk = new Gitalk({
+        // Gitalk配置
+        language: "zh-CN",
+        clientID: "79ce199a43614be97674",
+        clientSecret: "c68e11a8bb3ced0b9c95cb40f9a9335ba5322189",
+        repo: "blogSourse",
+        owner: "Jupiter-19",
+        admin: ["Jupitet-19"],
+        id: md5(location.pathname),
+        distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+</script>
+
+
+    </div>
 
 
 
@@ -217,123 +271,14 @@
 
                 </main>
                 
-                    
-    <aside class="col-md-4 sidebar">
-        
-        
+                    <aside id="article-toc" role="navigation" class="col-md-4">
     <div class="widget">
-        <h3 class="title">搜索</h3>
-        <div id="search-form">
-            <div id="result-mask" class="hide"></div>
-            <div class="search-area">
-                
-                
-                    <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Google Search"><button type="submit" class="search-form-submit">谷歌搜索</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
-                
-            </div>
-            <div id="result-wrap" class="hide">
-                <div id="search-result"></div>
-            </div>
-            <div class="hide">
-                <template id="search-tpl">
-                    <div class="item">
-                        <a href="/{path}" title="{title}">
-                            <div class="title">{title}</div>
-                            <div class="content">{content}</div>
-                        </a>
-                    </div>
-                </template>
-            </div>
-        </div>
-    </div>
-
+        <h3 class="title">文章目录</h3>
         
-        
-    <div class="widget">
-        <h3 class="title">网站公告</h3>
-        <div class="notification">
-            <p>
-    博客建站：<a href="https://jupiter-19.github.io/2019/07/15/about-me/" title="" target="_blank">About Me</a> <br/>
-    简书主页：<a href="https://www.jianshu.com/u/0a38bee13c53" title="" target="_blank">Jianshu Homepage</a> <br/>
-    持仓列表：<a href="https://jupiter-19.github.io/2019/07/18/%E6%8C%81%E4%BB%93%E5%88%97%E8%A1%A8/">Stocks list</a><br/>
-</p>
-        </div>
-    </div>
-
-        
-        
-    <div class="widget">
-      <h3 class="title">社交</h3> 
-        <div class="content social">
-            
-	            <a href="//github.com/Jupiter-19" rel="external nofollow" title="Github" target="_blank">
-			    	<i class="git fa fa-git"></i>
-			    </a>
-            
-	            <a href="mailto:jupiter19@zju.edu.cn" rel="external nofollow" title="邮箱" target="_blank">
-			    	<i class="envelope-o fa fa-envelope-o"></i>
-			    </a>
-            
-	            <a href="1550124323" rel="external nofollow" title="联系QQ" target="_blank">
-			    	<i class="qq fa fa-qq"></i>
-			    </a>
-            
-	            <a href="https://www.facebook.com/profile.php?id=100039250326917" rel="external nofollow" title="Facebook" target="_blank">
-			    	<i class="facebook-official fa fa-facebook-official"></i>
-			    </a>
-            
-        </div>
-    </div>
-
-
-        
-        
-    <div class="widget">
-        <h3 class="title">分类</h3>
-        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/技术与工具/"><i class="fa" aria-hidden="true">技术与工具</i></a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/数学与统计/"><i class="fa" aria-hidden="true">数学与统计</i></a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/杂谈与爱好/"><i class="fa" aria-hidden="true">杂谈与爱好</i></a><span class="category-list-count">1</span></li></ul>
-    </div>
-
-
-        
-        
-  <div class="widget">
-    <h3 class="title">标签云</h3>
-    <div class="content tag-cloud">
-        
-            <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/python/" style="font-size: 10px;">python</a> <a href="/tags/投资/" style="font-size: 10px;">投资</a>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#PART-I-BASIC-CONCEPTS"><span class="toc-text">PART I: BASIC CONCEPTS</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Chap1-1-AFFINE-SET"><span class="toc-text">Chap1.1: AFFINE SET</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Chap1-2-CONVEX-SETS-AND-CONES"><span class="toc-text">Chap1.2: CONVEX SETS AND CONES</span></a></li></ol></li></ol>
         
     </div>
-  </div>
-
-
-        
-        
-    <div class="widget">
-        <h3 class="title">友链</h3>
-        <div class="content friends-link">
-        
-            <a href="https://hexo.io/zh-cn/" class="fa" target="_blank">Hexo官网</a>
-        
-            <a href="http://www.math.zju.edu.cn/" class="fa" target="_blank">浙大数学学院</a>
-        
-            <a href="http://210.32.137.90/s/lib/libtb/show/415" class="fa" target="_blank">数学数据库</a>
-        
-            <a href="http://guba.eastmoney.com/" class="fa" target="_blank">股吧</a>
-        
-            <a href="https://xueqiu.com/" class="fa" target="_blank">雪球财经</a>
-        
-            <a href="https://tushare.pro/" class="fa" target="_blank">tushare金融数据</a>
-        
-            <a href="https://www.huobi.br.com/zh-cn/" class="fa" target="_blank">火币全球站</a>
-        
-            <a href="https://www.juzimi.com" class="fa" target="_blank">句子迷</a>
-        
-        </div>
-    </div>
-
-
-        
-    </aside>
+</aside>
 
                 
             </div>
