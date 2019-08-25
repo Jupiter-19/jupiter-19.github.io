@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="ZhangShaojie&#39;s Blog">
 <meta property="og:description" content="阅读书籍：《Convex Analysis》, R. Tyrrell Rockafellar.">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-08-23T10:36:42.988Z">
+<meta property="og:updated_time" content="2019-08-23T11:49:41.577Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="凸分析学习笔记">
 <meta name="twitter:description" content="阅读书籍：《Convex Analysis》, R. Tyrrell Rockafellar.">
@@ -209,7 +209,7 @@ var _hmt = _hmt || [];
         <p>阅读书籍：《Convex Analysis》, R. Tyrrell Rockafellar.</p>
 <a id="more"></a>
 
-<h2 id="PART-I-BASIC-CONCEPTS"><a href="#PART-I-BASIC-CONCEPTS" class="headerlink" title="PART I: BASIC CONCEPTS"></a>PART I: BASIC CONCEPTS</h2><h3 id="Chap1-1-AFFINE-SET"><a href="#Chap1-1-AFFINE-SET" class="headerlink" title="Chap1.1: AFFINE SET"></a>Chap1.1: AFFINE SET</h3><p><strong>Thm1.3</strong></p>
+<h1 id="PART-I-BASIC-CONCEPTS"><a href="#PART-I-BASIC-CONCEPTS" class="headerlink" title="PART I: BASIC CONCEPTS"></a>PART I: BASIC CONCEPTS</h1><h2 id="Chap1-1-Affine-Sets"><a href="#Chap1-1-Affine-Sets" class="headerlink" title="Chap1.1: Affine Sets"></a>Chap1.1: Affine Sets</h2><p><strong>Thm1.3</strong></p>
 <p>Given $b \in \mathbb R^m$ and $m\times n$ real matrix $B$, the set<br>$$<br>M = { x\in\mathbb R^n | Bx=b }<br>$$<br>is an affine set in $\mathbb R^n$. Moreover, every affine set may be represented in this way.</p>
 <p><strong>Proof</strong></p>
 <p>$Bx =b$, $X= {x\in\mathbb R^n | Bx=0}$. We have $M=x+X$.</p>
@@ -222,7 +222,8 @@ var _hmt = _hmt || [];
 <hr>
 <p><strong>Corollary 1.6.1</strong></p>
 <p>Let $M_1$ and $M_2$ be any two affine sets in $\mathbb R^n$ of the same dimension. Then there exists a one-to-one affine transformation $T$ of $\mathbb R^n$ onto inself such that $TM_1=M_2$.</p>
-<h3 id="Chap1-2-CONVEX-SETS-AND-CONES"><a href="#Chap1-2-CONVEX-SETS-AND-CONES" class="headerlink" title="Chap1.2: CONVEX SETS AND CONES"></a>Chap1.2: CONVEX SETS AND CONES</h3><p><strong>Thm 2.2</strong> </p>
+<hr>
+<h2 id="Chap1-2-Convex-Sets-and-Cones"><a href="#Chap1-2-Convex-Sets-and-Cones" class="headerlink" title="Chap1.2: Convex Sets and Cones"></a>Chap1.2: Convex Sets and Cones</h2><p><strong>Thm 2.2</strong> </p>
 <p>A subset of $\mathbb R^n$ is convex if and only if it contains all the convex combinations of its elements.</p>
 <hr>
 <p><strong>Def</strong></p>
@@ -230,6 +231,29 @@ var _hmt = _hmt || [];
 <hr>
 <p><strong>Thm 2.7</strong></p>
 <p>Let $K$ be a convex cone containing 0. Then there is a smallest subspace containing K, namely<br>$$<br>K-K = {x-y|x\in K,y\in K} = \text{aff}~ K<br>$$</p>
+<hr>
+<h2 id="Chap1-3-The-Algebra-of-Convex-Sets"><a href="#Chap1-3-The-Algebra-of-Convex-Sets" class="headerlink" title="Chap1.3: The Algebra of Convex Sets"></a>Chap1.3: The Algebra of Convex Sets</h2><p><strong>Thm 3.4</strong></p>
+<p>Let $A$ be a linear transformation from $\mathbb R^n$ to $\mathbb R^m$. Then $AC$ is a convex set in $\mathbb R^m$ for every convex set $C$ in $\mathbb R^n$, and $A^{-1}D$ is a convex set in $\mathbb R^n$ for every convex set $D$ in $\mathbb R^m$.</p>
+<hr>
+<h2 id="Chap-1-4-Convex-Functions"><a href="#Chap-1-4-Convex-Functions" class="headerlink" title="Chap 1.4: Convex Functions"></a>Chap 1.4: Convex Functions</h2><p><strong>Thm 4.3</strong>（Jensen’s Inequality）</p>
+<p>Let $f$ be a function from $\mathbb R^n$ to $(-\infty,+\infty]$. Then $f$ is convex if and only if<br>$$<br>f(\lambda_1 x_1 + \cdots \lambda_mx_m) \le \lambda_1f(x_1) + \cdots +\lambda_m f(x_m)<br>$$<br>whenever $\lambda_i \ge0$, $\sum_i\lambda_i=1$.</p>
+<p><strong>Thm 4.5</strong></p>
+<p>Let $f$ be a twice continously differentiable real-valued function on an open convex set $C$ in $\mathbb R^n$. Then $f$ is convex on $C$ if and only if its Hessian matrix<br>$$<br>Q_x=(q_{ij}(x)) , \qquad q_{ij}(x) = \frac{\partial ^2f}{\partial \xi_i\partial \xi_j} (\xi_1,\cdots ,\xi_n)<br>$$<br>is positive semi-definite for every $x\in C$.</p>
+<p><strong>Examples of Convex Functions</strong></p>
+<ul>
+<li>$\delta ^\star (x|C) = \sup{ \langle x , y\rangle : y\in C }$.</li>
+<li>$\gamma(x|C) = \inf{ \lambda \ge 0: x\in \lambda C }$.</li>
+<li>$d(x|C) = \inf { |x-y | : y\in C }$.</li>
+</ul>
+<p><strong>Thm 4.6</strong></p>
+<p>For any convex function $f$ and any $\alpha \in [-\infty,+\infty]$, the level sets ${x|f(x) &lt; \alpha}$ and ${x| f(x)\le \alpha}$ are convex.</p>
+<p><strong>Thm 4.7</strong></p>
+<p>A positively homogeneous function $f$ from $\mathbb R^n$ to $(-\infty,+\infty]$ is convex if and only if<br>$$<br>f(x+y) \le f(x)+f(y)<br>$$<br>for every $x,y\in\mathbb R^n$.</p>
+<p><strong>Corollary 4.7.2</strong></p>
+<p>If $f$ is a positively homogeneous proper convex function, then $f(-x) \ge f(x)$ for every $x$.</p>
+<hr>
+<h2 id="Chap-1-5-Functional-Operations"><a href="#Chap-1-5-Functional-Operations" class="headerlink" title="Chap 1.5: Functional Operations"></a>Chap 1.5: Functional Operations</h2><p><strong>Def</strong></p>
+<p><code>infimal convolution</code> $(f\ \Box\ )g(x) = \inf_y {f(x-y)+g(y)} $</p>
 
       
 
@@ -331,7 +355,7 @@ var _hmt = _hmt || [];
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#PART-I-BASIC-CONCEPTS"><span class="toc-number">1.</span> <span class="toc-text">PART I: BASIC CONCEPTS</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Chap1-1-AFFINE-SET"><span class="toc-number">1.1.</span> <span class="toc-text">Chap1.1: AFFINE SET</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Chap1-2-CONVEX-SETS-AND-CONES"><span class="toc-number">1.2.</span> <span class="toc-text">Chap1.2: CONVEX SETS AND CONES</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#PART-I-BASIC-CONCEPTS"><span class="toc-number">1.</span> <span class="toc-text">PART I: BASIC CONCEPTS</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Chap1-1-Affine-Sets"><span class="toc-number">1.1.</span> <span class="toc-text">Chap1.1: Affine Sets</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Chap1-2-Convex-Sets-and-Cones"><span class="toc-number">1.2.</span> <span class="toc-text">Chap1.2: Convex Sets and Cones</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Chap1-3-The-Algebra-of-Convex-Sets"><span class="toc-number">1.3.</span> <span class="toc-text">Chap1.3: The Algebra of Convex Sets</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Chap-1-4-Convex-Functions"><span class="toc-number">1.4.</span> <span class="toc-text">Chap 1.4: Convex Functions</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Chap-1-5-Functional-Operations"><span class="toc-number">1.5.</span> <span class="toc-text">Chap 1.5: Functional Operations</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
