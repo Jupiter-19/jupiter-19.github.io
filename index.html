@@ -204,8 +204,17 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>关于股指，可以用随机微分方程近似建模：<br>$$<br>\mathrm dP = \alpha(M-P)\mathrm d t +\sigma P \mathrm d B<br>$$</p>
-<p>很遗憾的是，我接不了</p>
+        <p>关于股指，可以用随机微分方程近似建模：<br>$$<br>\mathrm dP = \alpha(M e^{rt}-P)\mathrm d t +\sigma \sqrt{P} \mathrm d B<br>$$</p>
+<p>很遗憾的是，我没法算出该方程的精确解，仅能在数值上进行模拟。</p>
+<p>简单剖析一下该方程的实际含义，$Me^{rt} $表示股指的理论值。这里$r$可以认为是GDP增速，而M为股指基点。当指数产生偏离$(Me^{rt}-P)$时，</p>
+<hr>
+<h3 id="Ornstein-Uhlenbeck-process"><a href="#Ornstein-Uhlenbeck-process" class="headerlink" title="Ornstein-Uhlenbeck  process"></a>Ornstein-Uhlenbeck  process</h3><p>虽然前面方程无法得到精确解，但当时间和股指变动不大时，可以近似为Ornstein-Uhlenbeck方程：<br>$$<br>d P_{t}=\alpha\left(M-P_{t}\right) d t+\sigma d B_{t}<br>$$</p>
+<p>这里用$M$代替$Me^{rt}$，用$\sigma$代替$\sigma\sqrt{P}$。新的随机微分方程初值问题的精确解是可求的：</p>
+<p>$$<br>P_{t}=P_{0} e^{-\alpha t}+M\left(1-e^{-\alpha t}\right)+\sigma \int_{0}^{t} e^{\alpha (s-t)} d B_{t}<br>$$<br>证明见<a href="Ornstein-Uhlenbeck的求解">^1</a>。</p>
+<hr>
+<p>$d [e^{\alpha t}P_t]=\alpha e^{\alpha t}P_t dt + e^{\alpha t}dP_t = \alpha Me^{\alpha t}dt+\sigma e^{\alpha t}dB_t$</p>
+<p>故: $\displaystyle e^{\alpha t}P_t = P_0+M(e^{\alpha t}-1) + \sigma \int_0^t e^{\alpha s} dB_s$</p>
+<p>从而解为$\displaystyle P_t = P_0 e^{-\alpha t}+M(1-e^{-\alpha t}）+\sigma \int_0^t e^{\alpha (s-t)}dB_t$.</p>
 
       
 
@@ -1095,11 +1104,11 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+                <a href="javascript:void(0)" class="js-tag color3">投资</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">投资</a>
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
