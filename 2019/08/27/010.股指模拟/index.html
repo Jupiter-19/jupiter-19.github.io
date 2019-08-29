@@ -8,17 +8,21 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>股指模拟 | ZhangShaojie&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="关于股指，可以用随机微分方程近似建模：$$\mathrm dP = \alpha(M e^{rt}-P)\mathrm d t +\sigma \sqrt{P} \mathrm d B$$ 很遗憾的是，我没法算出该方程的精确解，仅能在数值上进行模拟。">
+  <meta name="description" content="关于股指，可以用随机微分方程近似建模：$$\mathrm dP = \alpha(M e^{rt}-P)\mathrm d t +\sigma \sqrt{P} \mathrm d B_t$$ 很遗憾的是，我没法算出该方程的精确解，仅能在数值上进行模拟。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="股指模拟">
 <meta property="og:url" content="http://yoursite.com/2019/08/27/010.股指模拟/index.html">
 <meta property="og:site_name" content="ZhangShaojie&#39;s Blog">
-<meta property="og:description" content="关于股指，可以用随机微分方程近似建模：$$\mathrm dP = \alpha(M e^{rt}-P)\mathrm d t +\sigma \sqrt{P} \mathrm d B$$ 很遗憾的是，我没法算出该方程的精确解，仅能在数值上进行模拟。">
+<meta property="og:description" content="关于股指，可以用随机微分方程近似建模：$$\mathrm dP = \alpha(M e^{rt}-P)\mathrm d t +\sigma \sqrt{P} \mathrm d B_t$$ 很遗憾的是，我没法算出该方程的精确解，仅能在数值上进行模拟。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-08-29T09:50:29.816Z">
+<meta property="og:image" content="http://yoursite.com/2019/08/27/010.股指模拟/sigma=0.5.png">
+<meta property="og:image" content="http://yoursite.com/2019/08/27/010.股指模拟/sigma=2.png">
+<meta property="og:image" content="http://yoursite.com/2019/08/27/010.股指模拟/sigma=5.png">
+<meta property="og:updated_time" content="2019-08-29T11:31:21.360Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="股指模拟">
-<meta name="twitter:description" content="关于股指，可以用随机微分方程近似建模：$$\mathrm dP = \alpha(M e^{rt}-P)\mathrm d t +\sigma \sqrt{P} \mathrm d B$$ 很遗憾的是，我没法算出该方程的精确解，仅能在数值上进行模拟。">
+<meta name="twitter:description" content="关于股指，可以用随机微分方程近似建模：$$\mathrm dP = \alpha(M e^{rt}-P)\mathrm d t +\sigma \sqrt{P} \mathrm d B_t$$ 很遗憾的是，我没法算出该方程的精确解，仅能在数值上进行模拟。">
+<meta name="twitter:image" content="http://yoursite.com/2019/08/27/010.股指模拟/sigma=0.5.png">
   
     <link rel="alternative" href="/atom.xml" title="ZhangShaojie&#39;s Blog" type="application/atom+xml">
   
@@ -206,11 +210,19 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>关于股指，可以用随机微分方程近似建模：<br>$$<br>\mathrm dP = \alpha(M e^{rt}-P)\mathrm d t +\sigma \sqrt{P} \mathrm d B<br>$$</p>
+        <p>关于股指，可以用随机微分方程近似建模：<br>$$<br>\mathrm dP = \alpha(M e^{rt}-P)\mathrm d t +\sigma \sqrt{P} \mathrm d B_t<br>$$</p>
 <p>很遗憾的是，我没法算出该方程的精确解，仅能在数值上进行模拟。</p>
 <a id="more"></a>
 
-<p>简单剖析一下该方程的实际含义，$Me^{rt} $表示股指的理论值。这里$r$可以认为是GDP增速，而M为股指基点。当指数产生偏离$(Me^{rt}-P)$时，股指会以$\alpha$的速度回归理论值$Me^{rt}$，而股指波动的方差则与股指成正比。</p>
+<p>简单剖析一下该方程的实际含义，$Me^{rt} $表示股指的理论值。这里$r$可以认为是经济(GDP)增速，而M为股指基点。当指数产生偏离$(Me^{rt}-P)$时，股指会以$\alpha$的速度回归理论值$Me^{rt}$，而股指波动的方差则与股指点数成正比。基于该模型，不妨假设$r=10%$，$\alpha = 0.1$，$M=1000$，以此演化10年股指走向。</p>
+<hr>
+<p>下面三图分别取$\sigma = 0.5,\sigma = 2,\sigma = 5$：</p>
+<p><img src="sigma=0.5.png" alt="sigma=0.5"></p>
+<p><img src="sigma=2.png" alt="sigma=2"></p>
+<p><img src="sigma=5.png" alt="sigma=5"></p>
+<p>可以看出$\sigma=0.5$时，曲线是非常理想的；$\sigma=2$时，曲线则像美股10年长牛；$\sigma=5$时，更有中国A股的感觉。假如模型是和与真实情况一致的，那么可以得到一个惊人的结论，中国股市并不比美股差劲，只是因为美国股市的波动率更小，导致没有出现A股的极端牛市和极端熊市。</p>
+<p>这一假定当然是非常粗糙的，而且放在中国也不是那么合理，数据表明，A股的平均市盈率较10年前下降了很多，这有两种解读：一种是中国股市的股指得到了很好的修正；另一种解读是中国的经济增速将显著下降。</p>
+<p>此外，这个模型也不能用来很好套利，因为真实模型中的$r$和$\sigma$都不应当是常数，这两个重要参数都应该符合当时的市场形势。</p>
 <hr>
 <h3 id="Ornstein-Uhlenbeck-process"><a href="#Ornstein-Uhlenbeck-process" class="headerlink" title="Ornstein-Uhlenbeck  process"></a>Ornstein-Uhlenbeck  process</h3><p>虽然前面方程无法得到精确解，但当时间和股指变动不大时，可以近似为Ornstein-Uhlenbeck方程：<br>$$<br>d P_{t}=\alpha\left(M-P_{t}\right) d t+\sigma d B_{t}<br>$$</p>
 <p>这里用$M$代替$Me^{rt}$，用$\sigma$代替$\sigma\sqrt{P}$。新的随机微分方程初值问题的精确解是可求的：</p>
@@ -219,14 +231,16 @@ var _hmt = _hmt || [];
 <li>$\mathbb EP_t = \displaystyle  P_0 e^{-at}+M(1-e^{-at})$.</li>
 <li>$\operatorname{Var} P_t = \displaystyle\int_0^t \left[\sigma e^{\alpha (s-t)}\right]^2dt = \frac1{2\alpha }\sigma^2(1-e^{-2\alpha t})$.</li>
 </ul>
-<p>该结果表明，虽然时间的推移，未来股指的期望值与初值的关系越来越弱，且方差会逐渐增大但保持有界。</p>
+<p>该结果指出，随着时间的推移，未来股指的期望值与初值的关系越来越弱，且方差会逐渐增大但保持有界。</p>
 <hr>
-<h3 id="Mean-Reverting-Asset"><a href="#Mean-Reverting-Asset" class="headerlink" title="Mean-Reverting Asset"></a>Mean-Reverting Asset</h3><hr>
+<h3 id="Mean-Reverting-Asset"><a href="#Mean-Reverting-Asset" class="headerlink" title="Mean-Reverting Asset"></a>Mean-Reverting Asset</h3><p>上述随机微分方程的核心在于假定了股指点数可以理论定价的，且发生偏离后会回归到理论值。称满足这一性质的资产为Mean-Reverting Asset。为了减少波动项，一般不直接用原生资产来建模，而是取两个趋势足够接近的资产构建资产组合。比如股指现货与股指期货、交叉汇率、不同品种的原油等。对组合资产$n_1S_1+n_2S_2$建模，一些情况下，$n_1,n_2$一正一负则要求做多其中一个资产并做空另一个资产，即Delta对冲。在个股上，事情则麻烦多了，因为我们往往找不到合适的足够相似的两个资产。对格力电器(000651.SZ)和美的集团(000333.SZ)以及海康威视(002415.SZ)和大华股份(002236.SZ)建模，都没能得到稳定的参数。</p>
+<p>随机微分方程是个连续的模型，但如果得不到解的精确表达式，则只能离散进行数值模拟，而离散的模型其实也是时间序列模型了:<br>$$<br>P_{t+1} = P_t+\alpha (Me^{rt}-P_t) \Delta t + \sigma \sqrt P_t \times\varepsilon_t, \qquad \varepsilon_t \sim N(0, \Delta t).<br>$$</p>
+<hr>
 <hr>
 <h4 id="附录-Ornstein-Uhlenbeck的求解"><a href="#附录-Ornstein-Uhlenbeck的求解" class="headerlink" title="附录:Ornstein-Uhlenbeck的求解"></a>附录:Ornstein-Uhlenbeck的求解</h4><p>$d [e^{\alpha t}P_t]=\alpha e^{\alpha t}P_t dt + e^{\alpha t}dP_t = \alpha Me^{\alpha t}dt+\sigma e^{\alpha t}dB_t$</p>
 <p>故: $\displaystyle e^{\alpha t}P_t = P_0+M(e^{\alpha t}-1) + \sigma \int_0^t e^{\alpha s} dB_s$</p>
 <p>从而解为$\displaystyle P_t = P_0 e^{-\alpha t}+M(1-e^{-\alpha t}）+\sigma \int_0^t e^{\alpha (s-t)}dB_t$.</p>
-<h4 id="python模拟代码"><a href="#python模拟代码" class="headerlink" title="python模拟代码"></a>python模拟代码</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy  <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getPath</span><span class="params">(dt,T,r)</span>:</span></span><br><span class="line">    dy = np.sqrt(dt)</span><br><span class="line">    x = np.random.normal(<span class="number">0</span>,<span class="number">1</span>,int(T/dt))</span><br><span class="line">    M,P = <span class="number">1000</span>,<span class="number">1000</span></span><br><span class="line">    Road = [ P ]</span><br><span class="line">    </span><br><span class="line">    a = <span class="number">0.1</span></span><br><span class="line">    sigma = <span class="number">10</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range( int(T/dt) ):</span><br><span class="line">        P = P + a * ( M * np.exp( r * i * dt) - P) * dt + np.sqrt(P) * sigma * x[i] * dy </span><br><span class="line">        Road.append(P)</span><br><span class="line">    <span class="keyword">return</span> Road</span><br><span class="line">    </span><br><span class="line">dt = <span class="number">1e-2</span></span><br><span class="line">T = <span class="number">10</span></span><br><span class="line">r = <span class="number">0.1</span></span><br><span class="line"></span><br><span class="line">plt.figure(figsize=(<span class="number">18</span>,<span class="number">9</span>))</span><br><span class="line">plt.plot( getPath(dt,T,r) )</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<h4 id="python模拟代码"><a href="#python模拟代码" class="headerlink" title="python模拟代码"></a>python模拟代码</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy  <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getPath</span><span class="params">(dt,T,r)</span>:</span></span><br><span class="line">    dy = np.sqrt(dt)</span><br><span class="line">    x = np.random.normal(<span class="number">0</span>,<span class="number">1</span>,int(T/dt))</span><br><span class="line">    M,P = <span class="number">1000</span>,<span class="number">1000</span></span><br><span class="line">    Road = [ P ]</span><br><span class="line">    </span><br><span class="line">    a = <span class="number">0.1</span></span><br><span class="line">    sigma = <span class="number">10</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range( int(T/dt) ):</span><br><span class="line">        P = P + a * ( M * np.exp( r * i * dt) - P) * dt + np.sqrt(P) * sigma * x[i] * dy </span><br><span class="line">        Road.append(P)</span><br><span class="line">    <span class="keyword">return</span> Road</span><br><span class="line">    </span><br><span class="line">dt = <span class="number">1</span>/<span class="number">250</span> <span class="comment"># 一年交易日数量约为250天</span></span><br><span class="line">T = <span class="number">10</span></span><br><span class="line">r = <span class="number">0.1</span></span><br><span class="line"></span><br><span class="line">plt.figure(figsize=(<span class="number">18</span>,<span class="number">9</span>))</span><br><span class="line">plt.plot( getPath(dt,T,r) )</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
 
 
       
