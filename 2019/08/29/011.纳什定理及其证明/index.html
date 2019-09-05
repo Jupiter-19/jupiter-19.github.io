@@ -8,17 +8,17 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>纳什定理及其证明 | ZhangShaojie&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="博弈论(Game Theory)是经济理论的一个主要分支。纳什均衡(Nash Equilibrium)是博弈论中最为重要的概念，纳什定理保证了在一定情况下，纳什均衡是一定存在的，但由于证明是非构造性的，因此不能指出以什么构造算法去达到纳什均衡点。">
+  <meta name="description" content="博弈论是经济理论的一个主要分支。纳什均衡是博弈论中最为重要的概念，纳什定理保证了在一定情况下，纳什均衡是一定存在的，但由于证明是非构造性的，因此不能指出以什么构造算法去达到纳什均衡点。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="纳什定理及其证明">
 <meta property="og:url" content="http://yoursite.com/2019/08/29/011.纳什定理及其证明/index.html">
 <meta property="og:site_name" content="ZhangShaojie&#39;s Blog">
-<meta property="og:description" content="博弈论(Game Theory)是经济理论的一个主要分支。纳什均衡(Nash Equilibrium)是博弈论中最为重要的概念，纳什定理保证了在一定情况下，纳什均衡是一定存在的，但由于证明是非构造性的，因此不能指出以什么构造算法去达到纳什均衡点。">
+<meta property="og:description" content="博弈论是经济理论的一个主要分支。纳什均衡是博弈论中最为重要的概念，纳什定理保证了在一定情况下，纳什均衡是一定存在的，但由于证明是非构造性的，因此不能指出以什么构造算法去达到纳什均衡点。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-08-30T03:52:35.895Z">
+<meta property="og:updated_time" content="2019-09-02T09:07:41.342Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="纳什定理及其证明">
-<meta name="twitter:description" content="博弈论(Game Theory)是经济理论的一个主要分支。纳什均衡(Nash Equilibrium)是博弈论中最为重要的概念，纳什定理保证了在一定情况下，纳什均衡是一定存在的，但由于证明是非构造性的，因此不能指出以什么构造算法去达到纳什均衡点。">
+<meta name="twitter:description" content="博弈论是经济理论的一个主要分支。纳什均衡是博弈论中最为重要的概念，纳什定理保证了在一定情况下，纳什均衡是一定存在的，但由于证明是非构造性的，因此不能指出以什么构造算法去达到纳什均衡点。">
   
     <link rel="alternative" href="/atom.xml" title="ZhangShaojie&#39;s Blog" type="application/atom+xml">
   
@@ -206,17 +206,35 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>博弈论(Game Theory)是经济理论的一个主要分支。纳什均衡(Nash Equilibrium)是博弈论中最为重要的概念，纳什定理保证了在一定情况下，纳什均衡是一定存在的，但由于证明是非构造性的，因此不能指出以什么构造算法去达到纳什均衡点。</p>
+        <p>博弈论是经济理论的一个主要分支。纳什均衡是博弈论中最为重要的概念，纳什定理保证了在一定情况下，纳什均衡是一定存在的，但由于证明是非构造性的，因此不能指出以什么构造算法去达到纳什均衡点。</p>
 <a id="more"></a>
 
-<h3 id="博弈论模型"><a href="#博弈论模型" class="headerlink" title="博弈论模型"></a>博弈论模型</h3><p>The <strong>norm -form (or strategic form) representation</strong> of a n-player game specifies the player’s strategy spaces $S_1,S_2,\cdots,S_n$ and their payoff functions $u_1,u_2,\cdots ,u_n$. We denote this game by $G={ S_1,\cdots,S_n;u_1,\cdots,u_n }$.</p>
+<h3 id="博弈论模型-Game-Theory"><a href="#博弈论模型-Game-Theory" class="headerlink" title="博弈论模型(Game Theory)"></a>博弈论模型(Game Theory)</h3><p>The <strong>norm -form (or strategic form) representation</strong> of a n-player game specifies the player’s strategy spaces $S_1,S_2,\cdots,S_n$ and their payoff functions $u_1,u_2,\cdots ,u_n$. We denote this game by $G={ S_1,\cdots,S_n;u_1,\cdots,u_n }$.</p>
 <ol>
-<li>The players in the game: $i=1,\cdots,n$.</li>
+<li>The players in the game: $i=1,\cdots,n​$.</li>
 <li>The strategies available to each player $i:s_i\in S_i$.</li>
 <li>The payoff received by each player for each combination of strategies $(s_1,\cdots,s_n)$ that could be chosen by the players: $u_i(s_1,\cdots,s_n)$, $i=1,\cdots,n$.</li>
 </ol>
 <hr>
-<h3 id="纳什均衡"><a href="#纳什均衡" class="headerlink" title="纳什均衡"></a>纳什均衡</h3><hr>
+<h3 id="纳什均衡-Nash-Equilibrium"><a href="#纳什均衡-Nash-Equilibrium" class="headerlink" title="纳什均衡(Nash Equilibrium)"></a>纳什均衡(Nash Equilibrium)</h3><p>In the <strong>norm-form</strong> game $G=(S_{1}, \cdots, S_{n} ; u_{1}, \cdots, u_{n})$, the strategies $(s_1^\star, \cdots, s_n^\star)$ are a <strong>Nash equilibrium</strong> if, for each player $i$, $s_i^\star$ is (at least tied for) player $i$’s best response to the strategies specified for the n-1 other players, $\left(s_{1}^{\star}, \cdots, s_{i-1}^{\star}, s_{i+1}^{\star}, \cdots, s_{n}^{\star}\right)$:<br>$$<br>u_{i}\left(s_{1}^{\star}, \cdots, s_{i-1}^{\star}, s_{i}^{*}, s_{i+1}^{\star}, \cdots, s_{n}^{\star}\right) \geq u_{i}\left(s_{1}^{\star}, \cdots, s_{1-1}^{\star}, s_{i}, s_{i+1}^{\star}, \cdots, s_{n}^{\star}\right)\qquad \text{(NE)}<br>$$<br>for every feasible strategy $s_i$ in $S_i$; that is $s_i^\star$ solves<br>$$<br>\max_ {s_i \in S_i } u_{i}  (s_{1}^{\star}, \cdots, s_{i-1}^{\star}, s_{i}, s_{i+1}^{\star}, \cdots, s_{n}^{\star}).<br>$$</p>
+<hr>
+<h3 id="混合策略-Mixed-Strategies"><a href="#混合策略-Mixed-Strategies" class="headerlink" title="混合策略(Mixed Strategies)"></a>混合策略(Mixed Strategies)</h3><p>In the norm-form game $G=(S_1,\cdots,S_n; u_1,\cdots,u_n )$, suppose $S_i = (s_{i1},\cdots, s_{iK})$. Then a <strong>mixed strategy</strong> for player $i$ is a probability distribution $p_i = (p_{i1},\cdots, p_{iK})$, where $0\le p_{iK} \le1$ for $k=1,\cdots,K$ and $p_{i1}+\cdots +p_{iK}=1$.</p>
+<ul>
+<li>$p_{ik}$ is the probability that player $i$ will play strategy $s_{ik}$.</li>
+<li>We call the strategies in $S_i$ as player $i$’s <strong>pure strategies</strong>.</li>
+</ul>
+<hr>
+<h3 id="纳什定理-Nash-Theorem"><a href="#纳什定理-Nash-Theorem" class="headerlink" title="纳什定理(Nash Theorem)"></a>纳什定理(Nash Theorem)</h3><p>In the norm-form game $G=(S_1,\cdots,S_n;u_1,\cdots,u_n )$, if $n$ is finite and $S_i$ is finite for every $I$, then there exists at least one Nash equilibrium, possibly involving mixed strategies.</p>
+<hr>
+<h3 id="纳什定理的证明-The-Proof-of-Nash-Theorem"><a href="#纳什定理的证明-The-Proof-of-Nash-Theorem" class="headerlink" title="纳什定理的证明(The Proof of Nash Theorem)"></a>纳什定理的证明(The Proof of Nash Theorem)</h3><ul>
+<li>step1：定义算子$T$</li>
+</ul>
+<p>$$<br>T(p_i(s_i))  = \frac{p_i(s_i) + \phi_{s_i}}{ 1+\sum_{s_i\in S_i} {\phi_{s_i}} }<br>$$</p>
+<p>其中$\phi_{s_i} = \max ( 0,u_i (s_i, p_{-i}) - u_i( p_i,p_{-i}) )$.</p>
+<ul>
+<li>1</li>
+</ul>
+<hr>
 <h3 id="衍生：无名氏定理-Folk-Theorem"><a href="#衍生：无名氏定理-Folk-Theorem" class="headerlink" title="衍生：无名氏定理(Folk Theorem)"></a>衍生：无名氏定理(Folk Theorem)</h3>
       
 
@@ -318,7 +336,7 @@ var _hmt = _hmt || [];
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#博弈论模型"><span class="toc-number">1.</span> <span class="toc-text">博弈论模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#纳什均衡"><span class="toc-number">2.</span> <span class="toc-text">纳什均衡</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#衍生：无名氏定理-Folk-Theorem"><span class="toc-number">3.</span> <span class="toc-text">衍生：无名氏定理(Folk Theorem)</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#博弈论模型-Game-Theory"><span class="toc-number">1.</span> <span class="toc-text">博弈论模型(Game Theory)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#纳什均衡-Nash-Equilibrium"><span class="toc-number">2.</span> <span class="toc-text">纳什均衡(Nash Equilibrium)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#混合策略-Mixed-Strategies"><span class="toc-number">3.</span> <span class="toc-text">混合策略(Mixed Strategies)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#纳什定理-Nash-Theorem"><span class="toc-number">4.</span> <span class="toc-text">纳什定理(Nash Theorem)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#纳什定理的证明-The-Proof-of-Nash-Theorem"><span class="toc-number">5.</span> <span class="toc-text">纳什定理的证明(The Proof of Nash Theorem)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#衍生：无名氏定理-Folk-Theorem"><span class="toc-number">6.</span> <span class="toc-text">衍生：无名氏定理(Folk Theorem)</span></a></li></ol>
                     </div>
                 </span>
             </div>
