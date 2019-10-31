@@ -6,15 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives | ZhangShaojie&#39;s Blog</title>
+  <title>计算机如何实现初等函数 | ZhangShaojie&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="ZhangShaojie&#39;s Blog">
-<meta property="og:url" content="http://yoursite.com/archives/index.html">
+  <meta name="description" content="在写数值计算类程序时候，免不了大量调用基本初等函数：log，exp，sin，cos，pow. 那么其在计算机内部是如何实现的？一个直观的想法就是泰勒展开，整个微分学基本可以只用到泰勒公式. 还有一个想法是牛顿迭代法，其二阶收敛实在是厉害. 但事情却不是那么简单.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计算机如何实现初等函数">
+<meta property="og:url" content="http://yoursite.com/2019/11/01/015.计算机如何实现初等函数/index.html">
 <meta property="og:site_name" content="ZhangShaojie&#39;s Blog">
+<meta property="og:description" content="在写数值计算类程序时候，免不了大量调用基本初等函数：log，exp，sin，cos，pow. 那么其在计算机内部是如何实现的？一个直观的想法就是泰勒展开，整个微分学基本可以只用到泰勒公式. 还有一个想法是牛顿迭代法，其二阶收敛实在是厉害. 但事情却不是那么简单.">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-10-31T17:23:02.623Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ZhangShaojie&#39;s Blog">
+<meta name="twitter:title" content="计算机如何实现初等函数">
+<meta name="twitter:description" content="在写数值计算类程序时候，免不了大量调用基本初等函数：log，exp，sin，cos，pow. 那么其在计算机内部是如何实现的？一个直观的想法就是泰勒展开，整个微分学基本可以只用到泰勒公式. 还有一个想法是牛顿迭代法，其二阶收敛实在是厉害. 但事情却不是那么简单.">
   
     <link rel="alternative" href="/atom.xml" title="ZhangShaojie&#39;s Blog" type="application/atom+xml">
   
@@ -182,37 +186,73 @@ var _hmt = _hmt || [];
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-015.计算机如何实现初等函数" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      计算机如何实现初等函数
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/11/01/015.计算机如何实现初等函数/" class="archive-article-date">
+
+        
+        <a href="/2019/11/01/015.计算机如何实现初等函数/" class="archive-article-date">
   	<time datetime="2019-10-31T16:07:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-01</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/11/01/015.计算机如何实现初等函数/">计算机如何实现初等函数</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在写数值计算类程序时候，免不了大量调用基本初等函数：log，exp，sin，cos，pow. 那么其在计算机内部是如何实现的？一个直观的想法就是泰勒展开，整个微分学基本可以只用到泰勒公式. 还有一个想法是牛顿迭代法，其二阶收敛实在是厉害. 但事情却不是那么简单. </p>
+<a id="more"></a>
 
-        <div class="article-info info-on-right">
-          
-          
+<p>我们看一下 Julia 使用的 openlibm 库，以 log 函数为例，见源码：<a href="https://github.com/JuliaMath/openlibm/blob/master/src/e_log.c" target="_blank" rel="noopener">link</a>，注意到其中有一段</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">const</span> <span class="keyword">double</span></span><br><span class="line">Lg1 = <span class="number">6.666666666666735130e-01</span>,  <span class="comment">/* 3FE55555 55555593 */</span></span><br><span class="line">Lg2 = <span class="number">3.999999999940941908e-01</span>,  <span class="comment">/* 3FD99999 9997FA04 */</span></span><br><span class="line">Lg3 = <span class="number">2.857142874366239149e-01</span>,  <span class="comment">/* 3FD24924 94229359 */</span></span><br><span class="line">Lg4 = <span class="number">2.222219843214978396e-01</span>,  <span class="comment">/* 3FCC71C5 1D8E78AF */</span></span><br><span class="line">Lg5 = <span class="number">1.818357216161805012e-01</span>,  <span class="comment">/* 3FC74664 96CB03DE */</span></span><br><span class="line">Lg6 = <span class="number">1.531383769920937332e-01</span>,  <span class="comment">/* 3FC39A09 D078C69F */</span></span><br><span class="line">Lg7 = <span class="number">1.479819860511658591e-01</span>;  <span class="comment">/* 3FC2F112 DF3E5244 */</span></span><br></pre></td></tr></table></figure>
+
+<p>由 Taylor 公式：<br>$$<br>\log(1+f) = \log(1+s)-\log(1-s) = 2s+\frac23s^3+\frac25s^5+\frac27s^7+\cdots<br>$$<br>其中$s= f/(2+f)$. 那么我能应该预存的多项式</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>我就试试打赏功能<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/img/alipay.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/img/weipay.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
@@ -225,373 +265,65 @@ var _hmt = _hmt || [];
 	</div>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/10/26/014.不能总是顺利呀/" class="archive-article-date">
-  	<time datetime="2019-10-26T15:57:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-26</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2019/10/26/014.不能总是顺利呀/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">不能总是顺利呀</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/10/26/014.不能总是顺利呀/">不能总是顺利呀</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/杂谈与爱好//" class="article-tag-list-link color1">杂谈与爱好</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    目录，不存在的…
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/08/013.丧/" class="archive-article-date">
-  	<time datetime="2019-09-08T14:37:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-08</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/09/08/013.丧/">丧</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/杂谈与爱好//" class="article-tag-list-link color1">杂谈与爱好</a>
-        		</li>
-      		
-		</ul>
-	</div>
+        
+    </div>
+</aside>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/02/012.一个数分题/" class="archive-article-date">
-  	<time datetime="2019-09-02T02:21:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-02</time>
-</a>
-        </div>
-    	 
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/09/02/012.一个数分题/">一个数分题</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/数学与统计//" class="article-tag-list-link color1">数学与统计</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/29/011.纳什定理及其证明/" class="archive-article-date">
-  	<time datetime="2019-08-29T02:21:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-29</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/29/011.纳什定理及其证明/">纳什定理及其证明</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/数学与统计//" class="article-tag-list-link color1">数学与统计</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/27/010.股指模拟/" class="archive-article-date">
-  	<time datetime="2019-08-26T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-27</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/27/010.股指模拟/">股指模拟</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/杂谈与爱好//" class="article-tag-list-link color1">杂谈与爱好</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/16/009.实用软件/" class="archive-article-date">
-  	<time datetime="2019-08-15T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-16</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/16/009.实用软件/">实用软件</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/技术与工具//" class="article-tag-list-link color1">技术与工具</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/14/008.DataFrame操作/" class="archive-article-date">
-  	<time datetime="2019-08-13T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-14</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/14/008.DataFrame操作/">DataFrame操作</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/技术与工具//" class="article-tag-list-link color1">技术与工具</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/06/007.凸分析学习笔记-基础概念/" class="archive-article-date">
-  	<time datetime="2019-08-06T02:21:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-06</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/06/007.凸分析学习笔记-基础概念/">凸分析学习笔记：基础概念</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/数学与统计//" class="article-tag-list-link color1">数学与统计</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/07/30/006.OLS与GMM/" class="archive-article-date">
-  	<time datetime="2019-07-30T11:13:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-30</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/07/30/006.OLS与GMM/">OLS与GMM</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/数学与统计//" class="article-tag-list-link color1">数学与统计</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="extend next" rel="next" href="/archives/page/2/">Next &raquo;</a>
-    </nav>
   
 
 
@@ -615,8 +347,8 @@ var _hmt = _hmt || [];
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
