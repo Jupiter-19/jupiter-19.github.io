@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="ZhangShaojie&#39;s Blog">
 <meta property="og:description" content="在写数值计算类程序时候，免不了大量调用基本初等函数：log，exp，sin，cos，pow. 那么其在计算机内部是如何实现的？一个直观的想法就是泰勒展开，整个微分学基本可以只用到泰勒公式. 还有一个想法是牛顿迭代法，其二阶收敛速度实在是厉害. 但事情却不是那么简单.">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-10-31T18:06:55.565Z">
+<meta property="og:updated_time" content="2019-10-31T18:26:11.342Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="计算机如何实现初等函数">
 <meta name="twitter:description" content="在写数值计算类程序时候，免不了大量调用基本初等函数：log，exp，sin，cos，pow. 那么其在计算机内部是如何实现的？一个直观的想法就是泰勒展开，整个微分学基本可以只用到泰勒公式. 还有一个想法是牛顿迭代法，其二阶收敛速度实在是厉害. 但事情却不是那么简单.">
@@ -218,8 +218,9 @@ var _hmt = _hmt || [];
 <p>该表与上表接近，但就是不一样，而且越往后偏差越大. 通过数值分析，大致可以知道两个多项式计算出的结果是挺接近的，但源代码中诡异的数字和理论值之间奇怪的误差到底是怎么回事？一番苦思冥想后，我终于意识到，这个很接近泰勒多项式的式子根本不是泰勒展开得到的，而是其在某一区间上的最佳一致逼近多项式. </p>
 <p>令 $\mathcal P_n$为 $n$ 阶多项式全体，令 $x$ 所在区间为$[a,b]$，考虑$f(x)$的最佳一致逼近多项式 $p_n(x) = \sum_{k=0}^n a_kx^k$，其满足<br>$$<br>\max_{x\in[a,b]} |p_n(x) - f(x)| = \min_{p\in\mathcal P_n} ( \max_{x\in[a,b]}|p(x)-f(x)| )<br>$$</p>
 <p>由于定义，最佳一致逼近多项式是$n$阶多项式中，使误差上限最小的多项式，由于泰勒多项式本身已经很优了，故两者的系数很接近也是自然的了. </p>
-<p>接下来，就是要确定区间$[a,b]$和系数$a_k$了. 以$2$为底的指数函数与对数函数为例：$\log_2 x = \log_2 2^k z=k+\log_2z$，其中$z\in [1/\sqrt2,\sqrt2 )$. $2^x = 2^k \times z^r$，其中$r\in [-0.5,0.5]$. 之所以取2为底，是因为计算机中，乘除2只需要位运算就可以了. 对于一般的底数（如e,10），用一下换底公式就可以实现了. 这下，区间就可以自己选定啦，然后的核心操作就是，如何确定$a_k$. 这事不是那么容易，</p>
-
+<p>接下来，就是要确定区间$[a,b]$和系数$a_k$了. 以$2$为底的指数函数与对数函数为例：$\log_2 x = \log_2 2^k z=k+\log_2z$，其中$z\in [1/\sqrt2,\sqrt2 )$. $2^x = 2^k \times z^r$，其中$r\in [-0.5,0.5]$. 之所以取2为底，是因为计算机中，乘除2只需要位运算就可以了. 对于一般的底数（如e,10），用一下换底公式就可以实现了. 这下，区间就可以自己选定啦，然后的核心操作就是，如何确定$a_k$. 这事不是那么容易，因为优化的目标函数是$L_\infty$范数，故不能求导. 但有了优化目标，再困难也是有办法的，而且算法其实还是有的：切比雪夫逼近方法 或 雷米兹算法. </p>
+<h2 id="暴力：空间换时间"><a href="#暴力：空间换时间" class="headerlink" title="暴力：空间换时间"></a>暴力：空间换时间</h2><p>在大规模计算时，若对计算的速度和精度都有很高的要求，那只能牺牲空间了. 为了速度，我们不希望多项式的阶数 $n$ 太高，为了精度，我们只能让区间 $[a,b]$ 尽量小了. $n$阶多项式的误差大致为$x^{n+1}$. 怎么实现，以$2^x$为例，不妨考虑$x=5.7243$，有<br>$$<br>2^{5.7342} =2^5 \times 2^{0.7}\times 2^{0.02}\times 2^{0.0043}<br>$$<br>我们需要在计算机中预存好$2^{0.1},2^{0.2},\cdots,2^{0.9}$以及$2^{0.01},2^{0.02},\cdots,2^{0.09}$. 此时计算$2^{0.0043}$就不需要阶太高的多项式就可以保证精度了. 当然我这边只是为了说明才用的十进制，计算机中必然将该想法用二进制陈述，而且往往会将尾数区间处理称关于0对称的. 对于函数exp，自然也是换底公式：$\exp(x)=2^{x/\ln2}$.</p>
+<h2 id="还能更快吗？-Pade近似"><a href="#还能更快吗？-Pade近似" class="headerlink" title="还能更快吗？ Pade近似"></a>还能更快吗？ Pade近似</h2>
       
 
       
@@ -311,7 +312,7 @@ var _hmt = _hmt || [];
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#奇怪的误差"><span class="toc-number">1.</span> <span class="toc-text">奇怪的误差</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#奇怪的误差"><span class="toc-number">1.</span> <span class="toc-text">奇怪的误差</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#暴力：空间换时间"><span class="toc-number">2.</span> <span class="toc-text">暴力：空间换时间</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#还能更快吗？-Pade近似"><span class="toc-number">3.</span> <span class="toc-text">还能更快吗？ Pade近似</span></a></li></ol>
                     </div>
                 </span>
             </div>
