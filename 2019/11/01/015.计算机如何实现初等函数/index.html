@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="ZhangShaojie&#39;s Blog">
 <meta property="og:description" content="在写数值计算类程序时候，免不了大量调用基本初等函数：log，exp，sin，cos，pow. 那么其在计算机内部是如何实现的？一个直观的想法就是泰勒展开，整个微分学基本可以只用到泰勒公式. 还有一个想法是牛顿迭代法，其二阶收敛实在是厉害. 但事情却不是那么简单.">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-10-31T17:50:18.381Z">
+<meta property="og:updated_time" content="2019-10-31T17:52:15.729Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="计算机如何实现初等函数">
 <meta name="twitter:description" content="在写数值计算类程序时候，免不了大量调用基本初等函数：log，exp，sin，cos，pow. 那么其在计算机内部是如何实现的？一个直观的想法就是泰勒展开，整个微分学基本可以只用到泰勒公式. 还有一个想法是牛顿迭代法，其二阶收敛实在是厉害. 但事情却不是那么简单.">
@@ -212,11 +212,11 @@ var _hmt = _hmt || [];
 <h2 id="奇怪的误差"><a href="#奇怪的误差" class="headerlink" title="奇怪的误差"></a>奇怪的误差</h2><p>我们看一下 Julia 使用的 openlibm 库，以 log 函数为例，见源码：<a href="https://github.com/JuliaMath/openlibm/blob/master/src/e_log.c" target="_blank" rel="noopener">link</a>，注意到其中有一段</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">const</span> <span class="keyword">double</span></span><br><span class="line">Lg1 = <span class="number">6.666666666666735130e-01</span>,  <span class="comment">/* 3FE55555 55555593 */</span></span><br><span class="line">Lg2 = <span class="number">3.999999999940941908e-01</span>,  <span class="comment">/* 3FD99999 9997FA04 */</span></span><br><span class="line">Lg3 = <span class="number">2.857142874366239149e-01</span>,  <span class="comment">/* 3FD24924 94229359 */</span></span><br><span class="line">Lg4 = <span class="number">2.222219843214978396e-01</span>,  <span class="comment">/* 3FCC71C5 1D8E78AF */</span></span><br><span class="line">Lg5 = <span class="number">1.818357216161805012e-01</span>,  <span class="comment">/* 3FC74664 96CB03DE */</span></span><br><span class="line">Lg6 = <span class="number">1.531383769920937332e-01</span>,  <span class="comment">/* 3FC39A09 D078C69F */</span></span><br><span class="line">Lg7 = <span class="number">1.479819860511658591e-01</span>;  <span class="comment">/* 3FC2F112 DF3E5244 */</span></span><br><span class="line"><span class="comment">// 注释部分数据为 double 型数据转为 int64.</span></span><br></pre></td></tr></table></figure>
 
-<p>由 Taylor 公式：<br>$$<br>\log(1+f) = \log(1+s)-\log(1-s) = 2s+\frac23s^3+\frac25s^5+\frac27s^7+\cdots<br>$$<br>其中$s= f/(2+f)$. 那么我们应该预存的多项式系数为：$\frac23,\frac25,\frac27,\cdots$，即</p>
+<p>由 Taylor 公式：<br>$$<br>\log(1+f) = \log(1+s)-\log(1-s)<br>$$<br>$$<br>= 2s+\frac23s^3+\frac25s^5+\frac27s^7+\cdots<br>$$<br>其中$s= f/(2+f)$. 那么我们应该预存的多项式系数为：$\frac23,\frac25,\frac27,\cdots$，即</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">const</span> <span class="keyword">double</span></span><br><span class="line">Lg1 = <span class="number">6.666666666666666667e-01</span>, </span><br><span class="line">Lg2 = <span class="number">4.000000000000000000e-01</span>,</span><br><span class="line">Lg3 = <span class="number">2.857142857142857143e-01</span>,</span><br><span class="line">Lg4 = <span class="number">2.222222222222222222e-01</span>,</span><br><span class="line">Lg5 = <span class="number">1.818181818181818182e-01</span>,</span><br><span class="line">Lg6 = <span class="number">1.538461538461538462e-01</span>,</span><br><span class="line">Lg7 = <span class="number">1.333333333333333333e-01</span>;</span><br></pre></td></tr></table></figure>
 
 <p>该表与上表接近，但就是不一样，而且越往后偏差越大. 通过数值分析，大致可以知道两个多项式计算出的结果是挺接近的，但源代码中诡异的数字和理论值之间奇怪的误差到底是怎么回事？一番苦思冥想后，我终于意识到，这个很接近泰勒多项式的式子根本不是泰勒展开得到的，而是其在某一区间上的最佳一致逼近多项式. </p>
-<p>令 $\mathcal P_n$为 $n$ 阶多项式全体，令 $x$ 的区间为$[a,b]$，考虑$f(x)$的最佳一致逼近多项式 $p_n(x) = \sum_{k=0}^n a_kx^k$，其满足<br>$$<br>\max_{x\in[a,b]} |p_n(x) - f(x)| = \min_{p\in\mathcal P_n} []<br>$$</p>
+<p>令 $\mathcal P_n$为 $n$ 阶多项式全体，令 $x$ 的区间为$[a,b]$，考虑$f(x)$的最佳一致逼近多项式 $p_n(x) = \sum_{k=0}^n a_kx^k$，其满足<br>$$<br>\max_{x\in[a,b]} |p_n(x) - f(x)| = \min_{p\in\mathcal P_n} ( \max_{x\in[a,b]}|p(x)-f(x)| )<br>$$</p>
 
       
 
@@ -442,11 +442,11 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+                <a href="javascript:void(0)" class="js-tag color3">投资</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">投资</a>
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
