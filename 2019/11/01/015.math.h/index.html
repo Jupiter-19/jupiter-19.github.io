@@ -6,15 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2019/11 | ZhangShaojie&#39;s Blog</title>
+  <title>计算机如何实现初等函数 | ZhangShaojie&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="ZhangShaojie&#39;s Blog">
-<meta property="og:url" content="http://yoursite.com/archives/2019/11/index.html">
+  <meta name="description" content="在写数值计算类程序时候，免不了大量调用基本初等函数：log，exp，sin，cos，pow. 那么其在计算机内部是如何实现的？一个直观的想法就是泰勒展开，整个微分学基本可以只用到泰勒公式. 还有一个想法是牛顿迭代法，其二阶收敛速度实在是厉害. 但事情却不是那么简单.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计算机如何实现初等函数">
+<meta property="og:url" content="http://yoursite.com/2019/11/01/015.math.h/index.html">
 <meta property="og:site_name" content="ZhangShaojie&#39;s Blog">
+<meta property="og:description" content="在写数值计算类程序时候，免不了大量调用基本初等函数：log，exp，sin，cos，pow. 那么其在计算机内部是如何实现的？一个直观的想法就是泰勒展开，整个微分学基本可以只用到泰勒公式. 还有一个想法是牛顿迭代法，其二阶收敛速度实在是厉害. 但事情却不是那么简单.">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-11-01T03:33:08.299Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ZhangShaojie&#39;s Blog">
+<meta name="twitter:title" content="计算机如何实现初等函数">
+<meta name="twitter:description" content="在写数值计算类程序时候，免不了大量调用基本初等函数：log，exp，sin，cos，pow. 那么其在计算机内部是如何实现的？一个直观的想法就是泰勒展开，整个微分学基本可以只用到泰勒公式. 还有一个想法是牛顿迭代法，其二阶收敛速度实在是厉害. 但事情却不是那么简单.">
   
     <link rel="alternative" href="/atom.xml" title="ZhangShaojie&#39;s Blog" type="application/atom+xml">
   
@@ -182,37 +186,91 @@ var _hmt = _hmt || [];
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-015.math.h" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/11/01/015.math.h/" class="archive-article-date">
-  	<time datetime="2019-10-31T16:07:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-01</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/11/01/015.math.h/">计算机如何实现初等函数</a>
+    <h1 class="article-title" itemprop="name">
+      计算机如何实现初等函数
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
+        
+        <a href="/2019/11/01/015.math.h/" class="archive-article-date">
+  	<time datetime="2019-10-31T16:07:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-01</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在写数值计算类程序时候，免不了大量调用基本初等函数：log，exp，sin，cos，pow. 那么其在计算机内部是如何实现的？一个直观的想法就是泰勒展开，整个微分学基本可以只用到泰勒公式. 还有一个想法是牛顿迭代法，其二阶收敛速度实在是厉害. 但事情却不是那么简单. </p>
+<a id="more"></a>
+
+<h2 id="奇怪的误差"><a href="#奇怪的误差" class="headerlink" title="奇怪的误差"></a>奇怪的误差</h2><p>我们看一下 Julia 使用的 openlibm 库，以 log 函数为例，见源码：<a href="https://github.com/JuliaMath/openlibm/blob/master/src/e_log.c" target="_blank" rel="noopener">link</a>，注意到其中有一段</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">const</span> <span class="keyword">double</span></span><br><span class="line">Lg1 = <span class="number">6.666666666666735130e-01</span>,  <span class="comment">/* 3FE55555 55555593 */</span></span><br><span class="line">Lg2 = <span class="number">3.999999999940941908e-01</span>,  <span class="comment">/* 3FD99999 9997FA04 */</span></span><br><span class="line">Lg3 = <span class="number">2.857142874366239149e-01</span>,  <span class="comment">/* 3FD24924 94229359 */</span></span><br><span class="line">Lg4 = <span class="number">2.222219843214978396e-01</span>,  <span class="comment">/* 3FCC71C5 1D8E78AF */</span></span><br><span class="line">Lg5 = <span class="number">1.818357216161805012e-01</span>,  <span class="comment">/* 3FC74664 96CB03DE */</span></span><br><span class="line">Lg6 = <span class="number">1.531383769920937332e-01</span>,  <span class="comment">/* 3FC39A09 D078C69F */</span></span><br><span class="line">Lg7 = <span class="number">1.479819860511658591e-01</span>;  <span class="comment">/* 3FC2F112 DF3E5244 */</span></span><br><span class="line"><span class="comment">// 注释部分数据为 double 型数据转为 int64.</span></span><br></pre></td></tr></table></figure>
+
+<p>由 Taylor 公式：<br>$$<br>\log(1+f) = \log(1+s)-\log(1-s)<br>$$<br>$$<br>= 2s+\frac23s^3+\frac25s^5+\frac27s^7+\cdots<br>$$<br>其中$s= f/(2+f)$. 那么我们应该预存的多项式系数为：$\frac23,\frac25,\frac27,\cdots$，即</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">const</span> <span class="keyword">double</span></span><br><span class="line">Lg1 = <span class="number">6.666666666666666667e-01</span>, </span><br><span class="line">Lg2 = <span class="number">4.000000000000000000e-01</span>,</span><br><span class="line">Lg3 = <span class="number">2.857142857142857143e-01</span>,</span><br><span class="line">Lg4 = <span class="number">2.222222222222222222e-01</span>,</span><br><span class="line">Lg5 = <span class="number">1.818181818181818182e-01</span>,</span><br><span class="line">Lg6 = <span class="number">1.538461538461538462e-01</span>,</span><br><span class="line">Lg7 = <span class="number">1.333333333333333333e-01</span>;</span><br></pre></td></tr></table></figure>
+
+<p>该表与上表接近，但就是不一样，而且越往后偏差越大. 通过数值分析，大致可以知道两个多项式计算出的结果是挺接近的，但源代码中诡异的数字和理论值之间奇怪的误差到底是怎么回事？一番苦思冥想后，我终于意识到，这个很接近泰勒多项式的式子根本不是泰勒展开得到的，而是其在某一区间上的最佳一致逼近多项式. </p>
+<p>令 $\mathcal P_n$为 $n$ 阶多项式全体，令 $x$ 所在区间为$[a,b]$，考虑$f(x)$的最佳一致逼近多项式 $p_n(x) = \sum_{k=0}^n a_kx^k$，其满足<br>$$<br>\max_{x\in[a,b]} |p_n(x) - f(x)| = \min_{p\in\mathcal P_n} ( \max_{x\in[a,b]}|p(x)-f(x)| )<br>$$</p>
+<p>由于定义，最佳一致逼近多项式是$n$阶多项式中，使误差上限最小的多项式，由于泰勒多项式本身已经很优了，故两者的系数很接近也是自然的了. </p>
+<p>接下来，就是要确定区间$[a,b]$和系数$a_k$了. 以$2$为底的指数函数与对数函数为例：$\log_2 x = \log_2 2^k z=k+\log_2z$，其中$z\in [1/\sqrt2,\sqrt2 )$. $2^x = 2^k \times z^r$，其中$r\in [-0.5,0.5]$. 之所以取2为底，是因为计算机中，乘除2只需要位运算就可以了. 对于一般的底数（如e,10），用一下换底公式就可以实现了. 这下，区间就可以自己选定啦，然后的核心操作就是，如何确定$a_k$. 这事不是那么容易，因为优化的目标函数是$L_\infty$范数，故不能求导. 但有了优化目标，再困难也是有办法的，而且算法其实还是有的：切比雪夫逼近方法 或 雷米兹算法. </p>
+<h2 id="暴力：空间换时间"><a href="#暴力：空间换时间" class="headerlink" title="暴力：空间换时间"></a>暴力：空间换时间</h2><p>在大规模计算时，若对计算的速度和精度都有很高的要求，那只能牺牲空间了. 为了速度，我们不希望多项式的阶数 $n$ 太高，为了精度，我们只能让区间 $[a,b]$ 尽量小了. $n$阶多项式的误差大致为$x^{n+1}$. 怎么实现？以$2^x$为例，不妨考虑$x=1.7243$，有<br>$$<br>2^{1.7243} =2^1 \times 2^{0.7}\times 2^{0.02}\times 2^{0.0043}<br>$$<br>我们需要在计算机中预存好$2^{0.1},2^{0.2},\cdots,2^{0.9}$以及$2^{0.01},2^{0.02},\cdots,2^{0.09}$. 此时计算$2^{0.0043}$就不需要阶太高的多项式就可以保证精度了. 当然我这边只是为了说明才用的十进制，计算机中必然将该想法用二进制陈述，而且往往会将尾数区间处理成关于0对称的. 对于函数exp，自然也是换底公式：$\exp(x)=2^{x/\ln2}$. 在二进制下如何更快的将这些位取出来，这就是代码层面的事情了，我可以明确的说，这是可以快速实现的. </p>
+<p>对数函数同样可以空间换时间. 同样以2为底，$x=1.7243$为例，则<br>$$<br>\log_2(1.7243) =\log_2 1.7 + \log_2\frac{1.7243}{1.7}<br>$$<br>此时$\frac{1.7243}{1.7}$很接近1，故收敛很快；而$\log_21.7$和$\frac1{1.7}$则预先算好就行了. 该方法同样有二进制的陈述，构造是不难的. </p>
+<h2 id="还能更快吗？-用Pade近似"><a href="#还能更快吗？-用Pade近似" class="headerlink" title="还能更快吗？ 用Pade近似"></a>还能更快吗？ 用Pade近似</h2><p>要达到$n$阶的精度，看起来至少得用$n$阶多项式去逼近. 但可以不用多项式去逼近，而使用有理多项式，这就是Pade近似. 以 exp 函数为例，若要达到十阶的精度，则需要泰勒展开到十项，而 Pade 近似指出，下式也可以达到十阶的精度<br>$$<br>\exp(x)\approx \frac{1+\frac12x+\frac19x^2+\frac1{72}x^3+\frac1{1008}x^4+\frac1{30240}x^5}{1-\frac12x+\frac19x^2-\frac1{72}x^3+\frac1{1008}x^4-\frac1{30240}x^5}<br>$$<br>其为分子分母均是5阶多项式的有理多项式，算法流程如下：</p>
+<ul>
+<li>x2 = x * x, x4 = x2 * x2;</li>
+<li>奇数项 = x * ( P1 + P3 * x2 + P5 * x4 )</li>
+<li>偶数项 = 1 + P2 * x2 + P4 * x4</li>
+<li>值 = (奇数项 + 偶数项) / (奇数项 - 偶数项)</li>
+</ul>
+<p>相比于直接计算10阶多项式，其有两大优势，1：不需要计算 x 的高次幂；2：将重复的运算合并了. </p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>double型浮点数有15-16位的有效数字，因此构造程序时不需要设计其有20位有效数字. 代码层面上如何充分运用位运算，如何恰到好处的选择多项式的阶，如何利用预存的数据，这都是在设计和调试 math.h 时候要好好考虑的. </p>
+<p>从数学的角度看数学，数学挺像个游戏的；但从应用学科的角度看数学，数学还真能做出点事情来. </p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>我就试试打赏功能<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/img/alipay.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/img/weipay.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
@@ -225,17 +283,66 @@ var _hmt = _hmt || [];
 	</div>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2019/10/26/014.不能总是顺利呀/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">不能总是顺利呀</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#奇怪的误差"><span class="toc-number">1.</span> <span class="toc-text">奇怪的误差</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#暴力：空间换时间"><span class="toc-number">2.</span> <span class="toc-text">暴力：空间换时间</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#还能更快吗？-用Pade近似"><span class="toc-number">3.</span> <span class="toc-text">还能更快吗？ 用Pade近似</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-number">4.</span> <span class="toc-text">总结</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -258,8 +365,8 @@ var _hmt = _hmt || [];
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
