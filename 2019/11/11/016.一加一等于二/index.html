@@ -16,7 +16,7 @@
 <meta property="og:description" content="最近在读《哥德尔、埃舍尔、巴赫》一书，读至“印符数论”一章，那就来谈一谈为什么“1+1=2”吧。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/2019/11/11/016.一加一等于二/pic.jpg">
-<meta property="og:updated_time" content="2019-11-11T14:48:42.078Z">
+<meta property="og:updated_time" content="2019-11-11T15:36:58.290Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="1+1=2">
 <meta name="twitter:description" content="最近在读《哥德尔、埃舍尔、巴赫》一书，读至“印符数论”一章，那就来谈一谈为什么“1+1=2”吧。">
@@ -211,9 +211,19 @@ var _hmt = _hmt || [];
         <p>最近在读《哥德尔、埃舍尔、巴赫》一书，读至“印符数论”一章，那就来谈一谈为什么“1+1=2”吧。</p>
 <a id="more"></a>
 
-<p>下图来源于《哥德尔、埃舍尔、巴赫》一书第295页，</p>
+<p>下图来源于《哥德尔、埃舍尔、巴赫》（之后简称为GEB）一书第295页，</p>
 <p><img src="pic.jpg" alt="pic"></p>
-<p>由书名可知，这书和数学有关（哥德尔是数学家），但又不完全是本数学书（埃舍尔是画家，巴赫是音乐家）。</p>
+<p>由书名可知，这书和数学有关（哥德尔是数学家），但又不完全是本数学书（埃舍尔是画家，巴赫是音乐家）。正如罗素在其大作《数学原理》一书的363页才得到“1+1=2”，《GEB》直到295页才能得到“1+1=2”。很多人眼中，1+1=2要么是一个不证自明的公理，要么是个无法判定真伪的命题。但其证明还是有一点点价值的，价值就在于理解自然数的本质是什么？</p>
+<p>《GEB》先介绍印符数论（Typographical Number Thoery，简称TNT）。TNT是自然数高度抽象化的表现，并可以表现所有数论定理，尽管变现的过程会非常的繁琐。一般我们称：“0,1,2,3,4,5, …”为自然数，这是借助阿拉伯数字和十进制表现的。</p>
+<p>那么更原始一些的自然数是什么，可以认为是结绳计数法，在数数的过程中，没有东西用符号“0”或“零”或“zero”表示，有了个东西后用符号“1”或“一”或“one”表示，再有一个东西后用符号“2”或“二”或“two”表示，再有个东西后用符号“3”或“三”或“three”表示。其实符号不重要，如果有外星人的话，外星人第一眼肯定不知道“13”是什么。我们也可用“a,b,c,d,e, …” 去表现这个计数的过程。但是，自然数有无穷多个，我们总不能一个个定义过去吧，所以要抽象出一个概念，不妨称之为后继，每个自然数都有唯一的后继数，用函数S来表示。这样，自然数的定义就可以改为S(“0”)=”1”,S(“1”)=”2”,S(“2”)=”3”,…，或S(a)=b,S(b)=c,S(c)=d… 注意这边的1,2,3,…都只是符号，只需要有不重复的符号来表现后继数就可以的，即使你强行把自然数改为“0,1,3,2,4,5,6,7,8,…”，也是毫无问题的。</p>
+<p>有了数字之后，就要定义运算了，就先给两个基础的二元运算，一个叫“加法/+”，一个叫“乘法/ $\times$”。二元运算本质上是个函数：即add(x,y)=x+y, times(x,y)=x$\times$y。现在依然只有最基础的符号，我们还不知道1+2等于多少，也不知道1+2是否等于2+1。 TNT就是给出了这些数字符号和运算符号的一套符号系统。TNT要和现实中使用的自然数等价起来，就期望加入最少的“规则”，然后利用这些最少的规则能得到全部的数论定理，就如5条欧式几何公理能得到整个欧式几何大厦。TNT需要的最少的规则也是5条，内容如下：</p>
+<ul>
+<li><strong>公理1</strong>：$\forall a:\sim Sa=0$.</li>
+<li><strong>公理2</strong>：$\forall a:(a+0)=a$.</li>
+<li><strong>公理3</strong>：$\forall a:\forall b:(a+S(b))=S(a+b)$.</li>
+<li><strong>公理4</strong>：$\forall a:(a\times 0)=0$.</li>
+<li><strong>公理5</strong>：$\forall a:\forall b:(a\times S(b)) = ((a\times b)+a)$.</li>
+</ul>
 
       
 
@@ -439,11 +449,11 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">投资</a>
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+                <a href="javascript:void(0)" class="js-tag color3">投资</a>
               </li>
              
               <li class="article-tag-list-item">
