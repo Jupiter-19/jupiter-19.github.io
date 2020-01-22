@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="ZhangShaojie&#39;s Blog">
 <meta property="og:description" content="Banach: 优秀的数学家在定理或理论之间看到了类似,卓越的数学家则从类似中间看到了类似.关键词：泛函、变分、欧拉-拉格朗日方程、诺特定理、最小作用量原理。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-01-22T07:16:51.602Z">
+<meta property="og:updated_time" content="2020-01-22T08:26:09.109Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="守恒、对称、最小作用量">
 <meta name="twitter:description" content="Banach: 优秀的数学家在定理或理论之间看到了类似,卓越的数学家则从类似中间看到了类似.关键词：泛函、变分、欧拉-拉格朗日方程、诺特定理、最小作用量原理。">
@@ -210,7 +210,11 @@ var _hmt = _hmt || [];
 <a id="more"></a>
 
 <h3 id="守恒"><a href="#守恒" class="headerlink" title="守恒"></a>守恒</h3><p>说到守恒量，自然很能想到守恒量是个量，比如能量、动量、角动量。但事实上，它更是个泛函(或者说广义函数)。重新审视机械能，其由两部分构成，动能和势能。</p>
-<p>设无穷远处的势能为0，再考虑一质点具有位置函数$x(t)$，速度函数$v(t)$. 这里的函数是向量值函数(因为空间是3维的)，且速度函数是位置函数关于时间的导数(定义可知)。故机械能为<br>$$<br>L(x,v) = \frac12 m|v|^2 - \phi(x).<br>$$<br>这里$\phi$表示势能，其与速度无关，是位置的函数。对能量做变分：<br>$$<br>\delta L = m v\cdot v’-\delta \phi(x)=0<br>$$<br>注意到$\delta \phi = \frac{\partial (fx)}{\partial t}=fv$，即$mva=Fv$，从而得到牛顿第二定律。这里的势能不仅是重力势能，也包括任何在力场中做功而储存的位能。</p>
+<p>设无穷远处的势能为0，再考虑一质点具有位置函数$x(t)$，速度函数$v(t)$. 这里的函数是向量值函数(因为空间是3维的)，且速度函数是位置函数关于时间的导数(定义可知)。故机械能为<br>$$<br>L(x,v) = \frac12 m|v|^2 - \phi(x).<br>$$<br>这里$\phi$表示势能，其与速度无关，是位置的函数。对能量做变分：<br>$$<br>\delta L = m v\cdot v’-\delta \phi(x)=0<br>$$<br>注意到$\delta \phi = \frac{\partial (Fx)}{\partial t}=Fv$，即$mva=Fv$，从而得到牛顿第二定律。这里的势能不仅是重力势能，也包括任何在力场中做功而储存的位能。机械能守恒对应的就是牛顿力学定理，更加严格的说，对应的是牛顿力学定律的时间平移不变性（后面再展开）。</p>
+<p>数学就爱概念的延伸，在自治动量系统中，物体具有状态函数$x(t)$，$f$为参数项，称$I$为守恒量，若其满足<br>$$<br>\nabla I(x)^T f(x)  =0.<br>$$<br>基于守恒量，在计算数学上也很有好处，它可以有效降低数值计算中误差的累积。比如三体问题模拟时，控制三星系统的能量、动量。冯康院士的最大成果是有限元方法，其次就是基于守恒量的辛几何算法。</p>
+<h3 id="对称"><a href="#对称" class="headerlink" title="对称"></a>对称</h3><p>几何上的对称比较好理解，旋转对称、平移对称、镜像对称。物理上的对称性稍微复杂点，其实也就是那么个意思：变形的不变量。高端点的说法是：物理定律在满足某种技术要求的一维李群作用下所满足的协变性。低端点的说法是：换个坐标系，物理规律还是不变的。</p>
+<p>现在轮到最著名的女数学家诺特出场了，诺特给出了诺特定理：对于每个局部作用下的可微对称性，存在一个对应的守恒流。 物理学家很喜欢对称性，也很喜欢守恒律。现在诺特定理说明了，基于作用量原理，守恒律就是对称性，对称性就是守恒律。</p>
+<p>回去看看刚才机械能守恒定理的推导过程，是关于时间取变分的，而得到的物理定律和时间无关，这就是能量守恒对应物理规律的时间平移不变性。动量守恒律关于位置做变分，则相应的可以得到物理规律的空间平移不变性；角动量守恒律对应的是物理规律的旋转对称性。</p>
 
       
 
@@ -303,7 +307,7 @@ var _hmt = _hmt || [];
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#守恒"><span class="toc-number">1.</span> <span class="toc-text">守恒</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#守恒"><span class="toc-number">1.</span> <span class="toc-text">守恒</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#对称"><span class="toc-number">2.</span> <span class="toc-text">对称</span></a></li></ol>
                     </div>
                 </span>
             </div>
