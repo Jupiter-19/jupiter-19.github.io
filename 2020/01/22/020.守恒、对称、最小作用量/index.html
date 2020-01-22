@@ -6,15 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2020 | ZhangShaojie&#39;s Blog</title>
+  <title>守恒、对称、最小作用量 | ZhangShaojie&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="ZhangShaojie&#39;s Blog">
-<meta property="og:url" content="http://yoursite.com/archives/2020/index.html">
+  <meta name="description" content="Banach: 优秀的数学家在定理或理论之间看到了类似,卓越的数学家则从类似中间看到了类似.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="守恒、对称、最小作用量">
+<meta property="og:url" content="http://yoursite.com/2020/01/22/020.守恒、对称、最小作用量/index.html">
 <meta property="og:site_name" content="ZhangShaojie&#39;s Blog">
+<meta property="og:description" content="Banach: 优秀的数学家在定理或理论之间看到了类似,卓越的数学家则从类似中间看到了类似.">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/2020/01/22/020.守恒、对称、最小作用量/01.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/01/22/020.守恒、对称、最小作用量/02.jpg">
+<meta property="og:updated_time" content="2020-01-22T10:22:40.454Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ZhangShaojie&#39;s Blog">
+<meta name="twitter:title" content="守恒、对称、最小作用量">
+<meta name="twitter:description" content="Banach: 优秀的数学家在定理或理论之间看到了类似,卓越的数学家则从类似中间看到了类似.">
+<meta name="twitter:image" content="http://yoursite.com/2020/01/22/020.守恒、对称、最小作用量/01.jpg">
   
     <link rel="alternative" href="/atom.xml" title="ZhangShaojie&#39;s Blog" type="application/atom+xml">
   
@@ -182,37 +189,83 @@ var _hmt = _hmt || [];
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-020.守恒、对称、最小作用量" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/01/22/020.守恒、对称、最小作用量/" class="archive-article-date">
-  	<time datetime="2020-01-22T10:08:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-22</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/01/22/020.守恒、对称、最小作用量/">守恒、对称、最小作用量</a>
+    <h1 class="article-title" itemprop="name">
+      守恒、对称、最小作用量
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
+        
+        <a href="/2020/01/22/020.守恒、对称、最小作用量/" class="archive-article-date">
+  	<time datetime="2020-01-22T10:08:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-22</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Banach: 优秀的数学家在定理或理论之间看到了类似,卓越的数学家则从类似中间看到了类似.</p>
+<a id="more"></a>
+
+<h3 id="守恒"><a href="#守恒" class="headerlink" title="守恒"></a>守恒</h3><p>说到守恒量，自然很能想到守恒量是个量，比如能量、动量、角动量。但事实上，它更是个泛函(或者说广义函数)。重新审视机械能，其由两部分构成，动能和势能。</p>
+<p>设无穷远处的势能为0，再考虑一质点具有位置函数$x(t)$，速度函数$v(t)$. 这里的函数是向量值函数(因为空间是3维的)，且速度函数是位置函数关于时间的导数(定义可知)。故机械能为<br>$$<br>L(x,v) = \frac12 m|v|^2 - \phi(x).<br>$$<br>这里$\phi$表示势能，其与速度无关，是位置的函数。对能量做变分：<br>$$<br>\delta L = m v\cdot v’-\delta \phi(x)=0<br>$$<br>注意到$\delta \phi = \frac{\partial (Fx)}{\partial t}=Fv$，即$mva=Fv$，从而得到牛顿第二定律。这里的势能不仅是重力势能，也包括任何在力场中做功而储存的位能。机械能守恒对应的就是牛顿力学定理，更加严格的说，对应的是牛顿力学定律的时间平移不变性（后面再展开）。</p>
+<p>数学就爱概念的延伸，在自治动量系统中，物体具有状态函数$x(t)$，$f$为参数项，称$I$为守恒量，若其满足<br>$$<br>\nabla I(x)^T f(x)  =0.<br>$$<br>基于守恒量，在计算数学上很有用处，它可以有效降低数值计算中误差的累积。三体问题模拟时，可以控制三星系统的能量、动量来避免参数爆炸。冯康院士的最大成果是有限元方法，其次就是基于守恒量的辛几何算法。</p>
+<h3 id="对称与守恒"><a href="#对称与守恒" class="headerlink" title="对称与守恒"></a>对称与守恒</h3><p>几何上的对称比较好理解，旋转对称、平移对称、镜像对称。物理上的对称性稍微复杂点，其实也就是那么个意思：变形的不变量。高端点的说法是：物理定律在满足某种技术要求的一维李群作用下所满足的协变性。低端点的说法是：换个坐标系，物理规律还是不变的。</p>
+<p>现在轮到最著名的女数学家诺特出场了，诺特给出了诺特定理：对于每个局部作用下的可微对称性，存在一个对应的守恒流。 物理学家很喜欢对称性，也很喜欢守恒律。现在诺特定理说明了，基于作用量原理，守恒律就是对称性，对称性就是守恒律。</p>
+<p>回去看看刚才机械能守恒定理的推导过程，是关于时间取变分的，而得到的物理定律和时间无关，这就是能量守恒对应物理规律的时间平移不变性。动量守恒律关于位置做变分，则相应的可以得到物理规律的空间平移不变性；角动量守恒律对应的是物理规律的旋转对称性。这些事实平时我们大概也有个感觉，而诺特定理用李群讲的更本质些了。李群有个好处，它既是群，又是个流形。</p>
+<p>“大巧不工，大成若缺”。就如手性分子具有不同的化学结构，物理规律不严格具有镜像对称性，最早的发现源于$\tau$-$\sigma$之谜。镜像对称性对应的守恒量称为宇称，而宇称在弱相互作用下不守恒，就是这一发现让杨振宁和李政道获得了诺贝尔物理奖。宇称不守恒，即“上帝是个左撇子”。</p>
+<p>对称性的破碎对宇宙来说也许是个好事，它带来了变数，也许就是它才让宇宙不是一锅粒子汤。</p>
+<h3 id="最小作用量与对称"><a href="#最小作用量与对称" class="headerlink" title="最小作用量与对称"></a>最小作用量与对称</h3><p>最早接触的最小作用量是费马引理：光线移动的路径是需时最少的路径 。这个结论感觉就是因果不分，给上帝了个存在的空间。光线在不同介质中传播时，先知道了走哪条路光程最短，然后再走那条路。</p>
+<p>再让变分出个场：考虑最简单的椭圆型偏微分方程：$-\Delta u=f$. 两边乘上测试函数$v$，再用一下Green公式，就得到了<br>$$<br>\int_\Omega \nabla u \cdot \nabla v  dx = \int _\Omega fvdx.<br>$$<br>再给个能量泛函$E(v) = \int_\Omega (\frac12 |\nabla v|^2-fv)dx$. 有趣的事情就出现了，这个能量泛函在$v$取偏微分方程的解$u$时取到极小值，即<br>$$<br>E(u)\le E(v),\qquad \forall v.<br>$$<br>前面那个积分式代表了某个守恒性质，而后面的不等式则给出了一个能量极小问题。也就是偏微分方程、守恒律方程、泛函极小问题三者是等价的，知一解则知三解。有限元方法正是通过计算变分得到的积分式来求解偏微分方程的。好处自然是化微分为积分。毕竟可积性比可微性容易满足。</p>
+<p>在哈密顿力学中，有一个至关重要的欧拉-拉格朗日方程：<br>$$<br>-\frac{d}{ds} (D_qL (x’(s),x(s) )) + D_xL(x’(s),x(s))=0, \qquad (0&lt;s&lt;t).<br>$$<br>著名的最速下降曲线由此计算。其描述的是哈密顿ODE的守恒性质，同时又等价上了两个泛函极小问题：</p>
+<p><img src="01.jpg" alt="01"></p>
+<p><img src="02.jpg" alt="02"></p>
+<p>后者称为Hopf-Lax公式。偏微分方程的解如此巧合地表现为一个最小作用量，说“数学统治宇宙”真的一点都不为过了。</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>我就试试打赏功能<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/img/alipay.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/img/weipay.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
@@ -225,93 +278,66 @@ var _hmt = _hmt || [];
 	</div>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/01/22/019.生命与宇宙/" class="archive-article-date">
-  	<time datetime="2020-01-22T04:08:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-22</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2020/01/22/019.生命与宇宙/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">2020年1月22日随笔</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/01/22/019.生命与宇宙/">2020年1月22日随笔</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/杂谈与爱好//" class="article-tag-list-link color1">杂谈与爱好</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#守恒"><span class="toc-number">1.</span> <span class="toc-text">守恒</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#对称与守恒"><span class="toc-number">2.</span> <span class="toc-text">对称与守恒</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#最小作用量与对称"><span class="toc-number">3.</span> <span class="toc-text">最小作用量与对称</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/01/05/018.2019理财复盘/" class="archive-article-date">
-  	<time datetime="2020-01-05T08:46:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-05</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/01/05/018.2019理财复盘/">2019理财复盘</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/杂谈与爱好//" class="article-tag-list-link color1">杂谈与爱好</a>
-        		</li>
-      		
-		</ul>
-	</div>
+        
+    </div>
+</aside>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+
   
   
-    </div></section>
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -334,8 +360,8 @@ var _hmt = _hmt || [];
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
