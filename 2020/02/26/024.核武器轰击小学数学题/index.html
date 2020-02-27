@@ -17,7 +17,8 @@
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/2020/02/26/024.核武器轰击小学数学题/1.png">
 <meta property="og:image" content="http://yoursite.com/2020/02/26/024.核武器轰击小学数学题/2.png">
-<meta property="og:updated_time" content="2020-02-27T15:02:01.586Z">
+<meta property="og:image" content="http://yoursite.com/2020/02/26/024.核武器轰击小学数学题/3.png">
+<meta property="og:updated_time" content="2020-02-27T15:33:29.036Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="核武器轰击小学数学题">
 <meta name="twitter:description" content="在一个数学的群里看到有人发了个题，粗看之下，仿佛是小学奥数题一般试凑和构造就能得到结果了. 思考一下，竟发现蕴含的信息要用很深刻的数学去理解.">
@@ -222,8 +223,10 @@ var _hmt = _hmt || [];
 <p><img src="2.png" alt="2"></p>
 <h2 id="我的思路"><a href="#我的思路" class="headerlink" title="我的思路"></a>我的思路</h2><p>第二部分看起来只能用代数多项式的方法做，而第一部分我构造了一种基于调和分析的做法. 证明的中间过程与基于图论的方法竟高度一致，我想，从一些更高的维度着眼，这两种方法应该是有本质联系的. </p>
 <p>考虑 $a_i$,$b_j$和矩阵$(c_{ij})$，其中$c_{ij}=a_i*b_j$（相对于PDE中的分离变量法）</p>
-<p>且$\lambda_1 a_i=a_{i+1}+a_{i-1}$，$\lambda_2b_j = b_{j+1}+b_{j-1}$，则<br>$$<br>c_{i+1,j}+c_{i-1,j}+c_{i,j+1}+c_{i,j-1}=(a_{i+1}+a_{i-1})b_j+a_i(b_{j+1}+b_{j-1}) = (\lambda_1+\lambda_2)a_ib_j=(\lambda_1+\lambda_2)c_{ij}.<br>$$<br>所以分别考虑 $\lambda_1a_i=a_{i+1}+a_{i-1}$ 和 $\lambda_2b_j = b_{j+1}+b_{j-1}$ 即可，对应的连续问题是 $(\lambda_1-2)a_i = \Delta a_i$ 和 $(\lambda_2-2)b_j=\Delta b_j$.</p>
-<p>对所有 $\lambda_1a_i=a_{i+1}+a_{i-1}$联立，设定$a_0$和$a_{n+1}$为0，写成矩阵形式，非零解的维数等于n-矩阵的秩<br>$$<br>\begin{bmatrix}<br>-\lambda&amp;1&amp;0&amp;0&amp;\cdots&amp;0\<br>1&amp;-\lambda&amp;1&amp;0&amp;\cdots&amp;0\<br>0&amp;1&amp;-\lambda&amp;1&amp;\cdots&amp;0\<br>0&amp;0&amp;1&amp;-\lambda&amp;\cdots&amp;0\<br>\cdots<br>\end{bmatrix}<br>\begin{bmatrix}<br>a_1\a_2\a_3\a_4\\cdots<br>\end{bmatrix} = \vec 0.<br>$$<br>对于三对象矩阵，其全部特征值恰好为 $2\cos\dfrac{i\pi}{n+1}$, $i=1,\cdots,n$.</p>
+<p>且$\lambda_1 a_i=a_{i+1}+a_{i-1}$，$\lambda_2b_j = b_{j+1}+b_{j-1}$，则<br>$$<br>c_{i+1,j}+c_{i-1,j}+c_{i,j+1}+c_{i,j-1}<br>$$<br>$$<br>=(a_{i+1}+a_{i-1})b_j+a_i(b_{j+1}+b_{j-1})<br>$$<br>$$<br>= (\lambda_1+\lambda_2)a_ib_j=(\lambda_1+\lambda_2)c_{ij}.<br>$$<br>所以分别考虑 $\lambda_1a_i=a_{i+1}+a_{i-1}$ 和 $\lambda_2b_j = b_{j+1}+b_{j-1}$ 即可，对应的连续问题是 $(\lambda_1-2)a_i = \Delta a_i$ 和 $(\lambda_2-2)b_j=\Delta b_j$.</p>
+<p>对所有 $\lambda_1a_i=a_{i+1}+a_{i-1}$联立，设定$a_0$和$a_{n+1}$为0，写成矩阵形式，非零解的维数等于n-矩阵的秩</p>
+<p><img src="3.png" alt="3"></p>
+<p>对于三对角矩阵，其全部特征值恰好为 $2\cos\dfrac{i\pi}{n+1}$, $i=1,\cdots,n$.</p>
 <p>由 $\lambda_1+\lambda_2=1$，即可得到余弦关系式. </p>
 <p>至于何为 $c_{ij}$可以做简单的乘法分解，从算子的角度看，是正规算子的某种分解罢了. 正如在调和方程里，直接用分离变量法求解椭圆型PDE.</p>
 
