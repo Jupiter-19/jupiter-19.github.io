@@ -18,7 +18,7 @@
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/2020/03/30/027.再玩爬虫/1.png">
 <meta property="og:image" content="http://yoursite.com/2020/03/30/027.再玩爬虫/2.png">
-<meta property="og:updated_time" content="2020-03-30T09:06:41.440Z">
+<meta property="og:updated_time" content="2020-03-30T09:10:37.998Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="再玩爬虫">
 <meta name="twitter:description" content="最近多学了一些python中pandas库的操作，然后就整了个代码爬取网格中的表格并存成 ‘.xlsx’ 文件。我现在越来越少用office的软件了，word和ppt用latex代替，excel用pandas代替。当数据量小时，office当然是好用的，但当数据量超过100mb时候，office要多卡有多卡。现在用的多的office软件只剩下oneNote了，不过感觉“印象笔记”和“Typora”">
@@ -214,7 +214,7 @@ var _hmt = _hmt || [];
 <a id="more"></a>
 
 <p>需要指出的是，现在很多网页都有一定的“反爬虫技术”，比如“知乎”，这种网页我是爬取不了的，因为技术不够。而一些上古时期的网页则容易多了，比如“百度贴吧”。</p>
-<p>这次爬取了一个论坛里的表，链接为：<a href="https://santi.huijiwiki.com/wiki/%E5%9C%B0%E7%90%83%E5%BE%80%E4%BA%8B%E7%BC%96%E5%B9%B4%E5%8F%B2" target="_blank" rel="noopener">Link</a> 。爬取得到 html 源码后，根据标识符 ‘&lt;table’ 和 ‘table&gt;’ 定位表格位置，然后根据 ‘<tr>‘ 和’</tr>‘ 定位行，最后根据 ‘</p><p>‘ 定位到每一个单元格。写入到“DataFrame”文件中，最后“to_excel”命令保存到本地。</p>
+<p>这次爬取了一个论坛里的表，链接为：<a href="https://santi.huijiwiki.com/wiki/%E5%9C%B0%E7%90%83%E5%BE%80%E4%BA%8B%E7%BC%96%E5%B9%B4%E5%8F%B2" target="_blank" rel="noopener">Link</a> 。爬取得到 html 源码后，根据标识符 ‘&lt;table’ 和 ‘table&gt;’ 定位表格位置，然后根据 ‘&lt;tr’ 和’/tr&gt;’ 定位行，最后根据 ‘&lt;p’ 定位到每一个单元格。写入到“DataFrame”文件中，最后“to_excel”命令保存到本地。</p>
 <p>这个过程中还需要一些处理，比如识别异常字符串、清除超链接信息。效果如图：</p>
 <p><img src="1.png" alt="1"></p>
 <p>相比于excel的数据刷选功能，我这边更加灵活，效果如图</p>
