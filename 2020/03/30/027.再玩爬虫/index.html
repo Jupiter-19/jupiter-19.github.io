@@ -6,15 +6,23 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Tag: python | ZhangShaojie&#39;s Blog</title>
+  <title>再玩爬虫 | ZhangShaojie&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="ZhangShaojie&#39;s Blog">
-<meta property="og:url" content="http://yoursite.com/tags/python/index.html">
+  <meta name="description" content="最近多学了一些python中pandas库的操作，然后就整了个代码爬取网格中的表格并存成 ‘.xlsx’ 文件。我现在越来越少用office的软件了，word和ppt用latex代替，excel用pandas代替。当数据量小时，office当然是好用的，但当数据量超过100mb时候，office要多卡有多卡。现在用的多的office软件只剩下oneNote了，不过感觉“印象笔记”和“Typora”">
+<meta name="keywords" content="python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="再玩爬虫">
+<meta property="og:url" content="http://yoursite.com/2020/03/30/027.再玩爬虫/index.html">
 <meta property="og:site_name" content="ZhangShaojie&#39;s Blog">
+<meta property="og:description" content="最近多学了一些python中pandas库的操作，然后就整了个代码爬取网格中的表格并存成 ‘.xlsx’ 文件。我现在越来越少用office的软件了，word和ppt用latex代替，excel用pandas代替。当数据量小时，office当然是好用的，但当数据量超过100mb时候，office要多卡有多卡。现在用的多的office软件只剩下oneNote了，不过感觉“印象笔记”和“Typora”">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/2020/03/30/027.再玩爬虫/1.png">
+<meta property="og:image" content="http://yoursite.com/2020/03/30/027.再玩爬虫/2.png">
+<meta property="og:updated_time" content="2020-03-30T09:06:41.440Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ZhangShaojie&#39;s Blog">
+<meta name="twitter:title" content="再玩爬虫">
+<meta name="twitter:description" content="最近多学了一些python中pandas库的操作，然后就整了个代码爬取网格中的表格并存成 ‘.xlsx’ 文件。我现在越来越少用office的软件了，word和ppt用latex代替，excel用pandas代替。当数据量小时，office当然是好用的，但当数据量超过100mb时候，office要多卡有多卡。现在用的多的office软件只剩下oneNote了，不过感觉“印象笔记”和“Typora”">
+<meta name="twitter:image" content="http://yoursite.com/2020/03/30/027.再玩爬虫/1.png">
   
     <link rel="alternative" href="/atom.xml" title="ZhangShaojie&#39;s Blog" type="application/atom+xml">
   
@@ -182,36 +190,78 @@ var _hmt = _hmt || [];
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-027.再玩爬虫" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      再玩爬虫
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/03/30/027.再玩爬虫/" class="archive-article-date">
+
+        
+        <a href="/2020/03/30/027.再玩爬虫/" class="archive-article-date">
   	<time datetime="2020-03-29T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-30</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/03/30/027.再玩爬虫/">再玩爬虫</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>最近多学了一些python中pandas库的操作，然后就整了个代码爬取网格中的表格并存成 ‘.xlsx’ 文件。我现在越来越少用office的软件了，word和ppt用latex代替，excel用pandas代替。当数据量小时，office当然是好用的，但当数据量超过100mb时候，office要多卡有多卡。现在用的多的office软件只剩下oneNote了，不过感觉“印象笔记”和“Typora”同样非常适合做笔记</p>
+<a id="more"></a>
 
-        <div class="article-info info-on-right">
-          
+<p>需要指出的是，现在很多网页都有一定的“反爬虫技术”，比如“知乎”，这种网页我是爬取不了的，因为技术不够。而一些上古时期的网页则容易多了，比如“百度贴吧”。</p>
+<p>这次爬取了一个论坛里的表，链接为：<a href="https://santi.huijiwiki.com/wiki/%E5%9C%B0%E7%90%83%E5%BE%80%E4%BA%8B%E7%BC%96%E5%B9%B4%E5%8F%B2" target="_blank" rel="noopener">Link</a> 。爬取得到 html 源码后，根据标识符 ‘&lt;table’ 和 ‘table&gt;’ 定位表格位置，然后根据 ‘<tr>‘ 和’</tr>‘ 定位行，最后根据 ‘</p><p>‘ 定位到每一个单元格。写入到“DataFrame”文件中，最后“to_excel”命令保存到本地。</p>
+<p>这个过程中还需要一些处理，比如识别异常字符串、清除超链接信息。效果如图：</p>
+<p><img src="1.png" alt="1"></p>
+<p>相比于excel的数据刷选功能，我这边更加灵活，效果如图</p>
+<p><img src="2.png" alt="2"></p>
+<p>这边的搜索功能是我自定义的，只要python用的好，没啥功能是实现不了的。源码里我还做了“排序”、“添加”等功能。另外，从对“二向箔”的文本搜索结果看，一个很黑的事实是，二维化太阳系的二向箔大概率不是歌者发送的，因宇宙的尺度和光速不可超越。</p>
+<p>下面附上源码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> requests       </span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ThreeBoby</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.url = <span class="string">'https://santi.huijiwiki.com/wiki/%E5%9C%B0%E7%90%83%E5%BE%80%E4%BA%8B%E7%BC%96%E5%B9%B4%E5%8F%B2'</span></span><br><span class="line">        self.GetDf()</span><br><span class="line">        self.Append()</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">RemoveLink</span><span class="params">(self,word)</span>:</span></span><br><span class="line">        <span class="comment"># 洗去超链接</span></span><br><span class="line">        word = word.replace(<span class="string">'&lt;/a&gt;'</span>,<span class="string">''</span>)</span><br><span class="line">        <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">            start = word.find(<span class="string">'&lt;a href'</span>)</span><br><span class="line">            end = word.find(<span class="string">'&gt;'</span>)</span><br><span class="line">            <span class="keyword">if</span> start == <span class="number">-1</span>:</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">            word = word[:start] + word[end+<span class="number">1</span>:]</span><br><span class="line">        <span class="keyword">return</span> word</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">SpecialCase</span><span class="params">(self,data)</span>:</span></span><br><span class="line">        <span class="comment"># 公元时间</span></span><br><span class="line">        idx = <span class="number">0</span></span><br><span class="line">        <span class="keyword">if</span> <span class="string">'~'</span> <span class="keyword">in</span> data[idx]:</span><br><span class="line">            str1 = data[idx]+data[idx+<span class="number">1</span>]</span><br><span class="line">            idx += <span class="number">2</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">if</span> data[idx+<span class="number">1</span>] == <span class="string">'~'</span>:</span><br><span class="line">                str1 = data[idx]+data[idx+<span class="number">1</span>]+data[idx+<span class="number">2</span>]</span><br><span class="line">                idx += <span class="number">3</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                str1 = data[idx]</span><br><span class="line">                idx += <span class="number">1</span></span><br><span class="line">        <span class="comment"># 纪年</span></span><br><span class="line">        str2 = data[idx]</span><br><span class="line">        idx += <span class="number">1</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 年份</span></span><br><span class="line">        <span class="keyword">if</span> <span class="string">'~'</span> <span class="keyword">in</span> data[idx]:</span><br><span class="line">            str3 = data[idx]+data[idx+<span class="number">1</span>]</span><br><span class="line">            idx += <span class="number">2</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">if</span> data[idx+<span class="number">1</span>] == <span class="string">'~'</span>:</span><br><span class="line">                str3 = data[idx]+data[idx+<span class="number">1</span>]+data[idx+<span class="number">2</span>]</span><br><span class="line">                idx += <span class="number">3</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                str3 = data[idx]</span><br><span class="line">                idx += <span class="number">1</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(idx,len(data)):</span><br><span class="line">            self.df.loc[self.flag] = [str1,str2,str3,data[i]]</span><br><span class="line">            self.flag += <span class="number">1</span></span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">GetDf</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.text = requests.get(self.url).text</span><br><span class="line">        <span class="comment"># 定位表格</span></span><br><span class="line">        start = self.text.find(<span class="string">'&lt;table'</span>)</span><br><span class="line">        end = self.text.find(<span class="string">'table&gt;'</span>)</span><br><span class="line">        self.text = self.text[start:end]</span><br><span class="line">        </span><br><span class="line">        self.df = pd.DataFrame([],columns = [<span class="string">'公元年'</span>,<span class="string">'纪年'</span>,<span class="string">'年份'</span>,<span class="string">'事件'</span>])</span><br><span class="line">        self.flag = <span class="number">0</span></span><br><span class="line">        <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">            start = self.text.find(<span class="string">'&lt;tr&gt;'</span>)</span><br><span class="line">            end = self.text.find(<span class="string">'&lt;/tr&gt;'</span>)</span><br><span class="line">            <span class="keyword">if</span> end == <span class="number">-1</span>:</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">            word = self.text[start:end] </span><br><span class="line">            data = re.findall(<span class="string">'&lt;p&gt;.*'</span>,word)</span><br><span class="line">            </span><br><span class="line">            <span class="comment"># 导入行数据</span></span><br><span class="line">            data = [self.RemoveLink(i[<span class="number">3</span>:]) <span class="keyword">for</span> i <span class="keyword">in</span> data]</span><br><span class="line">            <span class="keyword">if</span> len(data) == <span class="number">4</span>:</span><br><span class="line">                self.df.loc[self.flag] = data </span><br><span class="line">                self.flag += <span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                self.SpecialCase(data)</span><br><span class="line">            </span><br><span class="line">            self.text = self.text[end+<span class="number">2</span>:]</span><br><span class="line">        <span class="comment"># 删除无用首行</span></span><br><span class="line">        self.df = self.df.drop([<span class="number">0</span>])</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">search</span><span class="params">(self,words,type = <span class="string">'and'</span>)</span>:</span></span><br><span class="line">        words = list(words)</span><br><span class="line">        <span class="keyword">if</span> type == <span class="string">'or'</span>:</span><br><span class="line">            <span class="keyword">for</span> idx,word <span class="keyword">in</span> enumerate(words):</span><br><span class="line">                tmp = self.df[<span class="string">'事件'</span>].str.contains(word)</span><br><span class="line">                <span class="keyword">if</span> idx == <span class="number">0</span>:</span><br><span class="line">                    mask = tmp</span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    mask = mask | tmp</span><br><span class="line">            self.out = self.df[mask]</span><br><span class="line">            print(self.out)</span><br><span class="line">        <span class="keyword">elif</span> type == <span class="string">'and'</span>:</span><br><span class="line">            <span class="keyword">for</span> idx,word <span class="keyword">in</span> enumerate(words):</span><br><span class="line">                tmp = self.df[<span class="string">'事件'</span>].str.contains(word)</span><br><span class="line">                <span class="keyword">if</span> idx == <span class="number">0</span>:</span><br><span class="line">                    mask = tmp</span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    mask = mask &amp; tmp</span><br><span class="line">            self.out = self.df[mask]</span><br><span class="line">            print(self.out)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            print(<span class="string">'error input'</span>)</span><br><span class="line">        <span class="comment">#return self.out</span></span><br><span class="line">            </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">sort</span><span class="params">(self)</span>:</span></span><br><span class="line">        index = list(self.df.index)</span><br><span class="line">        new = list(self.df[<span class="string">'公元年'</span>])</span><br><span class="line">        <span class="keyword">for</span> idx,year <span class="keyword">in</span> enumerate(new):</span><br><span class="line">            <span class="keyword">if</span> year == <span class="string">'未知'</span>:</span><br><span class="line">                new[idx] = <span class="number">20000000</span></span><br><span class="line">            <span class="keyword">elif</span> type(year) == str:</span><br><span class="line">                <span class="keyword">if</span> <span class="string">'~'</span> <span class="keyword">in</span> year:</span><br><span class="line">                    new[idx] = int(year[:<span class="number">4</span>])+<span class="number">0.5</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    new[idx] = int(year)</span><br><span class="line">            <span class="keyword">if</span> type(index[idx]) == int:</span><br><span class="line">                new[idx] += index[idx] / <span class="number">1000</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                new[idx] += <span class="number">0.99</span></span><br><span class="line">            </span><br><span class="line">        self.df[<span class="string">'new'</span>] = new</span><br><span class="line">        self.df = self.df.sort_values(by=<span class="string">'new'</span>)</span><br><span class="line">        self.df = self.df.drop(<span class="string">'new'</span>,axis=<span class="number">1</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">Append</span><span class="params">(self)</span>:</span></span><br><span class="line">        new = pd.read_csv(<span class="string">'append.csv'</span>,encoding=<span class="string">'utf-8'</span>)</span><br><span class="line">        <span class="keyword">for</span> idx,message <span class="keyword">in</span> new.iterrows():</span><br><span class="line">            self.df.loc[<span class="string">'add_'</span>+str(idx+<span class="number">1</span>).zfill(<span class="number">2</span>)] = message</span><br><span class="line">        self.sort()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">ThreeBoby = ThreeBoby()</span><br><span class="line">df = ThreeBoby.df</span><br><span class="line">df.to_excel(<span class="string">r'三体编年史.xlsx'</span>,index = <span class="literal">False</span>,encoding=<span class="string">'gbk'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># In[]</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">ThreeBoby.search(['罗辑','泰勒'],type = 'and')</span></span><br><span class="line"><span class="string">ThreeBoby.search(['罗辑','庄颜'],type = 'and')</span></span><br><span class="line"><span class="string">ThreeBoby.search(['罗辑','叶文洁'],type = 'and')</span></span><br><span class="line"><span class="string">ThreeBoby.search('章北海')</span></span><br><span class="line"><span class="string">ThreeBoby.search('青铜时代')</span></span><br><span class="line"><span class="string">ThreeBoby.search('万有引力')</span></span><br><span class="line"><span class="string">ThreeBoby.search('二向箔')</span></span><br><span class="line"><span class="string">'''</span></span><br></pre></td></tr></table></figure>
+
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>我就试试打赏功能<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/img/alipay.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/img/weipay.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -223,7 +273,7 @@ var _hmt = _hmt || [];
 		</ul>
 	</div>
 
-          
+      
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
@@ -236,76 +286,66 @@ var _hmt = _hmt || [];
 	</div>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-      
-        </div></section>
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2020/03/12/026.自由意志/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">自由意志</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/14/008.DataFrame操作/" class="archive-article-date">
-  	<time datetime="2019-08-13T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-14</time>
-</a>
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    目录，不存在的…
+                    </div>
+                </span>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/14/008.DataFrame操作/">DataFrame操作</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/技术与工具//" class="article-tag-list-link color1">技术与工具</a>
-        		</li>
-      		
-		</ul>
-	</div>
+        
+    </div>
+</aside>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+
   
   
-    </div></section>
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -328,9 +368,9 @@ var _hmt = _hmt || [];
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
