@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="ZhangShaojie&#39;s Blog">
 <meta property="og:description" content="也不知道以后是否会从事算法行业，不过现在多写写技术博客，总归还是有用处的。从今天开始，正式启动”深度学习”栏目，用来记录学习过程中的体悟。 如没有特殊说明，框架均采用 Pytorch">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-04-24T12:51:23.830Z">
+<meta property="og:updated_time" content="2020-04-24T13:15:30.363Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="交叉熵">
 <meta name="twitter:description" content="也不知道以后是否会从事算法行业，不过现在多写写技术博客，总归还是有用处的。从今天开始，正式启动”深度学习”栏目，用来记录学习过程中的体悟。 如没有特殊说明，框架均采用 Pytorch">
@@ -210,7 +210,15 @@ var _hmt = _hmt || [];
 <p>如没有特殊说明，框架均采用 Pytorch</p>
 <a id="more"></a>
 
-<p>测试。</p>
+<p><strong>交叉熵定义</strong></p>
+<p>在分类问题中，常使用交叉熵作为损失函数。因为分类标签往往不具有<strong>序</strong>关系，如把 [‘猫’,’狗’,’鸟’]用[1,2,3]来表示。显然该背景下，1&lt;2&lt;3这类式子是没有意义的。</p>
+<p>为了衡量两个概率分布$p$和$q$的距离，交叉熵定义为<br>$$<br>H(p,q) = -\sum_x p(x)\log q(x)<br>$$<br>在数学上，求和号自然替换为积分算子$\int$，不过在深度学习中，标签分类都是离散的。</p>
+<p><strong>Pytorch实现</strong></p>
+<p>对有监督学习过程，模型会得到一个标签概率$q$，而实际上的标签概率$p$为 $(0,\cdots,0,1,0\cdots,0)$.</p>
+<p>故 $H(p,q) = -\log(q(i))$，$i$为实际标签值。</p>
+<p>pytorch框架下，</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> torch.nn <span class="keyword">as</span> nn</span><br><span class="line"><span class="keyword">import</span> torch.nn.functional <span class="keyword">as</span> F</span><br><span class="line"></span><br><span class="line">inputs = torch.Tensor([<span class="number">5</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">4</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">2</span>]).reshape(<span class="number">1</span>,<span class="number">-1</span>)  <span class="comment"># 表示输入概率分布</span></span><br><span class="line">labels = torch.Tensor([<span class="number">1</span>]).reshape(<span class="number">1</span>)                 <span class="comment"># 表示标签值</span></span><br></pre></td></tr></table></figure>
+
 
       
 
@@ -436,11 +444,11 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">投资</a>
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+                <a href="javascript:void(0)" class="js-tag color3">投资</a>
               </li>
              
               <li class="article-tag-list-item">
