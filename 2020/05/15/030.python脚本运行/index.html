@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="ZhangShaojie&#39;s Blog">
 <meta property="og:description" content="在跑神经网络模型的时候，往往需要多次调参，而程序又很慢。因我现在仍然使用windows环境，因此编写bat文件来执行python脚本（UNIX系统则为shell文件）.">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-05-15T13:49:43.897Z">
+<meta property="og:updated_time" content="2020-05-15T14:05:58.444Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python脚本运行">
 <meta name="twitter:description" content="在跑神经网络模型的时候，往往需要多次调参，而程序又很慢。因我现在仍然使用windows环境，因此编写bat文件来执行python脚本（UNIX系统则为shell文件）.">
@@ -213,13 +213,20 @@ var _hmt = _hmt || [];
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sys <span class="keyword">import</span> argv</span><br><span class="line"></span><br><span class="line">_,a,b = argv</span><br><span class="line"></span><br><span class="line">a = int(a)</span><br><span class="line">b = int(b)</span><br><span class="line"></span><br><span class="line">print(<span class="string">'第一个参数'</span>, a, a*a)</span><br><span class="line">print(<span class="string">'第二个参数'</span>, b, b*b*b)</span><br></pre></td></tr></table></figure>
 
 <p>对于不同参数输入，需要多次赋值并运行。假设该程序需要执行1小时，等待的过程无疑是不必要的。</p>
-<p>我们可以编写bat文件来执行该过程，将上面的python文件命名为 “test.py”，并在同目录下创建run.bat</p>
+<p>我们可以编写bat文件来执行该过程，将上面的python文件命名为 “test.py”，并在同目录下创建“run.bat”</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> run python file</span><br><span class="line"></span><br><span class="line">python test.py  5 6  &gt; log1.txt</span><br><span class="line">python test.py  2 4  &gt; log2.txt</span><br><span class="line">python test.py  6 2  &gt; log3.txt</span><br><span class="line"></span><br><span class="line">pause</span><br></pre></td></tr></table></figure>
 
 <p>此时，python文件会分别以参数(5,6)，(2,4)，(6,2)运行，并将结果记录到3个日志文件中。log1.txt中的内容为</p>
 <figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">第一个参数 5 25</span><br><span class="line">第二个参数 6 216</span><br></pre></td></tr></table></figure>
 
-<p>有个这个小技巧，多次调参只需要将参数设置好，然后运行程序，就可以睡大觉去了。第二天早上起来看看日志文件里的结果。</p>
+<p>有这个小技巧，多次调参只需要将参数设置好，然后运行程序，就可以睡大觉去了。第二天早上起来看看日志文件里的结果。</p>
+<hr>
+<p><strong>别的用处</strong></p>
+<p>latex是非常好用的文档排版系统，但很多latex软件运行过程中，会产生不知名过程文件。XXX.toc, XXX.out, XXX.log, XXX.aux等等。但真正有用的只有最初的tex文件和最后的pdf文件，有时文献的bib文件也是有用的。而其它文件则没啥必要，因此可以编辑清理bat文件如下</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">del *.aux</span><br><span class="line">del *.synctex(busy)</span><br><span class="line">del *.toc</span><br><span class="line">del *.<span class="built_in">log</span> </span><br><span class="line">del *.thm</span><br><span class="line">del *.out</span><br><span class="line"><span class="built_in">exit</span></span><br></pre></td></tr></table></figure>
+
+<p>这边的 * 是通配符，因此使用时候要非常谨慎，倘若加上一下 ‘del *.tex’，那源文件也就直接被删除了。而且脚本执行时，被删除文件是彻底删除而不是先去往回收站。</p>
+<p>运行该bat文件后，那些无用的过程文件就都彻底删除了，清爽整洁。</p>
 
       
 
