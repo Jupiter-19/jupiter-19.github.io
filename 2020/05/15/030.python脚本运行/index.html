@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="ZhangShaojie&#39;s Blog">
 <meta property="og:description" content="在跑神经网络模型的时候，往往需要多次调参，而程序又很慢。因我现在仍然使用windows环境，因此编写bat文件来执行python脚本（UNIX系统则为shell文件）.">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-05-15T14:05:58.444Z">
+<meta property="og:updated_time" content="2020-05-15T14:11:11.423Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python脚本运行">
 <meta name="twitter:description" content="在跑神经网络模型的时候，往往需要多次调参，而程序又很慢。因我现在仍然使用windows环境，因此编写bat文件来执行python脚本（UNIX系统则为shell文件）.">
@@ -225,7 +225,7 @@ var _hmt = _hmt || [];
 <p>latex是非常好用的文档排版系统，但很多latex软件运行过程中，会产生不知名过程文件。XXX.toc, XXX.out, XXX.log, XXX.aux等等。但真正有用的只有最初的tex文件和最后的pdf文件，有时文献的bib文件也是有用的。而其它文件则没啥必要，因此可以编辑清理bat文件如下</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">del *.aux</span><br><span class="line">del *.synctex(busy)</span><br><span class="line">del *.toc</span><br><span class="line">del *.<span class="built_in">log</span> </span><br><span class="line">del *.thm</span><br><span class="line">del *.out</span><br><span class="line"><span class="built_in">exit</span></span><br></pre></td></tr></table></figure>
 
-<p>这边的 * 是通配符，因此使用时候要非常谨慎，倘若加上一下 ‘del *.tex’，那源文件也就直接被删除了。而且脚本执行时，被删除文件是彻底删除而不是先去往回收站。</p>
+<p>这边的 * 是通配符，因此使用时候要非常谨慎，倘若加上一下 ‘del *.tex’，那源文件也就直接被删除了。而且脚本执行时，删除文件是彻底删除而不是先去往回收站。</p>
 <p>运行该bat文件后，那些无用的过程文件就都彻底删除了，清爽整洁。</p>
 
       
