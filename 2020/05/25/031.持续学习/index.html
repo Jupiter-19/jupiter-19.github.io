@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="ZhangShaojie&#39;s Blog">
 <meta property="og:description" content="本文的持续学习(Continual Learning)是深度学习里的一个概念，而非一个鸡汤概念。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-05-25T10:28:40.286Z">
+<meta property="og:updated_time" content="2020-05-25T10:33:25.762Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="持续学习">
 <meta name="twitter:description" content="本文的持续学习(Continual Learning)是深度学习里的一个概念，而非一个鸡汤概念。">
@@ -213,9 +213,9 @@ var _hmt = _hmt || [];
 <p>参考论文：Towards Backward-Compatible Representation Learning</p>
 <p>下载地址：<a href="https://arxiv.org/pdf/2003.11942.pdf" target="_blank" rel="noopener">https://arxiv.org/pdf/2003.11942.pdf</a></p>
 </blockquote>
-<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>​深度学习中，30% 靠算法，而 70% 靠数据。在初次模型训练结束后，往往还会持续得到新的数据 $\mathcal T_{\mathrm{new}}$ .  称旧数据  $\mathcal T_{\mathrm{old}}$ 训练得到的模型为 $\phi_{\mathrm{old}}$ . 若想更新模型，则需要将 $\mathcal T_{\mathrm{old}}$ 和 $\mathcal T_{\mathrm{new}}$ 联合训练. 对于非常大的数据集（如上亿张图片），训练的代价是很难承受的. 一个自然的希望是，我们根据旧模型 $\phi_{\mathrm{old}}$ 的参数和增量数据 $\mathcal T_{\mathrm{new}}$ 来<strong>持续学习</strong>. </p>
+<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>深度学习中，30% 靠算法，而 70% 靠数据。在初次模型训练结束后，往往还会持续得到新的数据 $\mathcal T_{\mathrm{new}}$ .  称旧数据  $\mathcal T_{\mathrm{old}}$ 训练得到的模型为 $\phi_{\mathrm{old}}$ . 若想更新模型，则需要将 $\mathcal T_{\mathrm{old}}$ 和 $\mathcal T_{\mathrm{new}}$ 联合训练. 对于非常大的数据集（如上亿张图片），训练的代价是很难承受的. 一个自然的希望是，我们根据旧模型 $\phi_{\mathrm{old}}$ 的参数和增量数据 $\mathcal T_{\mathrm{new}}$ 来<strong>持续学习</strong>. </p>
 <p>若直接在新数据上训练，则训练的网络必然会遗忘旧数据的结果，并在新数据上产生过拟合，从而不能在测试数据集上获取精度提升. 因此或是将旧数据 $\mathcal T_{\mathrm {old}}$ 作为正则项，或是将旧模型的参数 $\phi_{\mathrm{old}}$ 作为正则项. </p>
-<p>参考论文中提出了一种持续学习的方法，针对分类问题的CNN网络，将其分解为 特征层 和 分类器，即<br>$$<br>\phi(x;\theta) = c(f(x;\theta_\phi);\theta_c)<br>$$<br>即输入的图像先经过特征层处理成高维特征向量，然后经过分类器层处理成分类标签. 定义其损失函数为：<br>$$<br>L_{\mathrm{BCT}}  = L(\theta_{\phi\ \mathrm {new}},\theta_{c\ \mathrm{new}};\mathcal T_{\mathrm {new}}) + \lambda L(\theta_{\phi\ \mathrm {new}},\theta_{c\ \mathrm{old}};\mathcal T_{\mathrm {BCT}})<br>$$<br>这边 $\mathcal T_{\mathrm{BCT}}$ 可以取原始数据，也可以取增量数据. 损失函数的第一项是自然的，而第二项是使用旧模型的分类器和新模型的特征层作为神经网络. </p>
+<p>参考论文中提出了一种持续学习的方法，针对分类问题的CNN网络，将其分解为 特征层 和 分类器，即<br>$$<br>\phi(x;\theta) = c(f(x;\theta_\phi);\theta_c)<br>$$<br>即输入的图像先经过特征层处理成高维特征向量，然后经过分类器层处理成分类标签. 定义其损失函数为：<br>$$<br>L_{\mathrm{\ BCT \ }}  = L(\theta_{\phi\ \mathrm {new}\ },\theta_{c\ \mathrm{new}\ };\mathcal T_{\mathrm {new}\ }) + \lambda L(\theta_{\phi\ \mathrm {new}\ },\theta_{c\ \mathrm{old}\ };\mathcal T_{\mathrm {BCT}\ })<br>$$<br>这边 $\mathcal T_{\mathrm{BCT}}$ 可以取原始数据，也可以取增量数据. 损失函数的第一项是自然的，而第二项是使用旧模型的分类器和新模型的特征层作为神经网络. </p>
 <p>这个想法比较朴素。因为在分类问题中，使用交叉熵时，损失函数与正确率不完全正相关。所以只根据训练集上的损失函数为指标是存在一定问题的。结合两个网络的损失函数，加强了模型的泛化能力。</p>
 <h2 id="实验"><a href="#实验" class="headerlink" title="实验"></a>实验</h2><p>对 CIFAR-10 数据集测试，CIFAR-10 有5个训练数据集和1个测试数据集，通过全数据学习的方式，得到的结果为：</p>
 <table>
