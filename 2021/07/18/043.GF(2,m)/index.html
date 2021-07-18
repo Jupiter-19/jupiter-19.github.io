@@ -6,17 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://www.jupiter19.top">
-  <title>Archives: 2019 | ZhangShaojie&#39;s Blog</title>
+  <title>有限域的性质 | ZhangShaojie&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="blog">
-<meta property="og:type" content="website">
-<meta property="og:title" content="ZhangShaojie&#39;s Blog">
-<meta property="og:url" content="https://www.jupiter19.top/archives/2019/page/2/index.html">
+  <meta name="description" content="有限域又称为 Galois 域，本文简单介绍其一些性质，尤其是其在密码学中的性质.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="有限域的性质">
+<meta property="og:url" content="https://www.jupiter19.top/2021/07/18/043.GF(2,m)/index.html">
 <meta property="og:site_name" content="ZhangShaojie&#39;s Blog">
-<meta property="og:description" content="blog">
+<meta property="og:description" content="有限域又称为 Galois 域，本文简单介绍其一些性质，尤其是其在密码学中的性质.">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-07-17T16:00:00.000Z">
+<meta property="article:modified_time" content="2021-07-18T14:48:57.013Z">
 <meta property="article:author" content="张少杰">
-<meta property="article:tag" content="blog">
+<meta property="article:tag" content="数学">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="ZhangShaojie&#39;s Blog" type="application/atom+xml">
@@ -185,127 +187,179 @@ var _hmt = _hmt || [];
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-043.GF(2,m)" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/07/15/001.about_me/" class="archive-article-date">
-  	<time datetime="2019-07-15T14:57:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-15</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/07/15/001.about_me/">About Me</a>
+    <h1 class="article-title" itemprop="name">
+      有限域的性质
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2021/07/18/043.GF(2,m)/" class="archive-article-date">
+  	<time datetime="2021-07-17T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-18</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p> 有限域又称为 Galois 域，本文简单介绍其一些性质，尤其是其在密码学中的性质. </p>
+<span id="more"></span> 
+
+<h3 id="定理叙述"><a href="#定理叙述" class="headerlink" title="定理叙述"></a>定理叙述</h3><ul>
+<li>定理1(Lagrange定理)：设 $H$ 是有限群 $G$ 的子群，则 $|H|$ 是 $|G|$ 的因子. </li>
+<li>定理2：任意有限域 $F$ 的乘法群是一个循环群.</li>
+<li>定理3：多项式环 $F[x]$ 中多项式 $f(x)$ 不可约的充分必要条件为 $F[x]/(f(x))$ 是一个域. </li>
+<li>定理4：元素个数相等的有限域必定同构.</li>
+<li>定理5：设 $E$ 是元素个数等于 $p^n$ 的域，且 $m|n$，则 $E$ 有且只有一个子域 $F$，其元素个数为 $p^m$. </li>
+</ul>
+<h3 id="GF-2-m-的阶与生成元-一"><a href="#GF-2-m-的阶与生成元-一" class="headerlink" title="GF($2^m$)的阶与生成元(一)"></a>GF($2^m$)的阶与生成元(一)</h3><p>由定理1和定理2，域 $GF(2^8)$ 中元素的阶必定为 $2^8-1$ 的因子. 其上的乘法子群一定为循环群，且由域中的元素生成. </p>
+<p>域的乘法群的任意元素的阶必属于 ${1,3,5,15,17,51,85,255}$ 之一. 取模多项式为 $p(x) = x^8+x^4+x^3+x+1$，统计结果如下：</p>
+<ul>
+<li>count(order = 1) = 1</li>
+<li>count(order = 3) = 2</li>
+<li>count(order = 5) = 4</li>
+<li>count(order = 15) = 8</li>
+<li>count(order = 17) = 16</li>
+<li>count(order = 51) = 32</li>
+<li>count(order = 85) = 64</li>
+<li>count(order = 255) = 128</li>
+</ul>
+<p>取其它的不可约多项式作为模多项式，结果也是一致的，这是因为所有的 $GF(2^m)$ 都是同构的(定理4). </p>
+<p>这上面的数的规律不是巧合. 由定理2，其上的循环群都同构于模255的加法群 $(+,255)$. 该加法群的阶为 $n$ 的元素为 </p>
+<p>$$<br>{i\times 255\div n | i&lt;n ,gcd(i,n) = 1}<br>$$</p>
+<p>例如，阶为3的元素为 ${1,2}\times 85$，阶为15的元素为 ${1,2,4,7,8,11,13,14} \times 17$. 故阶为255的元素个数为<br>$$<br>\phi(255) = \phi(3)\cdot\phi(5)\cdot\phi(17) = 2\times4\times 16 = 128.<br>$$<br>阶为15的元素个数为<br>$$<br>\phi(15) = \phi(3)\cdot\phi(5) = 2\times 4 = 8.<br>$$<br>这里 $\phi$ 是数论中的Euler函数. 不仅如此，注意到形如 $2^{2^m}-1$的数有如下分解：<br>$$<br>2^{2^m}-1 = F_0 \times F_1\times F_2 \times \cdots \times F_{m-1}.<br>$$<br>这里 $F_i=2^{2^i} + 1$ 是费马数，已知 $F_0\sim F_4$ 均为素数，故 $GF(2)$ 到 $GF(2^{32})$中元素的阶均为2的幂次. 而$F_5\sim F_{11}$ 均不是素数，$F_{12}$ 及更大的费马数的情况未知. </p>
+<p>因此 $GF(2^{128})$中生成元的个数并不是域中元素的一半. </p>
+<h3 id="GF-2-128-中的生成元"><a href="#GF-2-128-中的生成元" class="headerlink" title="GF($2^{128}$)中的生成元"></a>GF($2^{128}$)中的生成元</h3><p>同样使用定理1和定理2，对于任意 $a\in GF(2^{128})$，<br>$$<br>a^m = 1 \quad mod \quad (x^{128}+x^7+x^2+x+1)<br>$$<br>的必要条件是 $m|(2^{128}-1)$. 同时<br>$$<br>2^{128}-1 = F_0\cdot F_1\cdot F_2\cdot F_3 \cdot F_4 \cdot F_5 \cdot F_6.<br>$$<br>共存在 $2^9-2$ 个真因子. 只要 $a^m \neq1$ 对任何真因子 $m$ 成立，则 $a$ 为生成元. $a^m$可以依赖快速幂运算实现，只需要预计算好<br>$$<br>[x^{64},x^{32},x^{16},x^8,x^4,x^2,x]<br>$$</p>
+<h3 id="GF-2-m-的阶与生成元-二"><a href="#GF-2-m-的阶与生成元-二" class="headerlink" title="GF($2^m$)的阶与生成元(二)"></a>GF($2^m$)的阶与生成元(二)</h3><p>取模多项式 $p(x) = x^8+x^4+x^3+x+1$，$x$ 会生成阶为51阶的子群. 但取其它多项式时，有可能 $x$ 是 $GF(2^8)$ 的生成元. 由定理3，$F$ 为域只需要模多项式是对应的多项式环上的不可约多项式即可. 使用Rabin’s test of irreducibility，可以判定一个多项式是否为不可约多项式，类似于RSA大素数生成时的<strong>素性测试</strong>.</p>
+<p>$F_2$上阶为8的不可约多项式的数量为30个，这一数字是可计算的. 下式给出了$F_q$上的最高次系数为 $n$ 的不可约多项式的数量.<br>$$<br>L_q(n) = \frac1n \sum_{d|n} \mu(\frac nd) q^d.<br>$$<br>其中 $\mu(n)$ 为Mobius函数. 由该结论，$GF(2^{2^m})$ 的取模多项式的密度大约为 $\frac1{2^m}$. </p>
+<h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><p>对于循环群，定理1是显然的，因为任意$n$阶循环群都同构于模$n$加法群. 尽管密码学中绝大部分的群都是循环群，但椭圆曲线上的群结构可以不是循环群(Mordell-Weil定理)</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>我就试试打赏功能<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/img/alipay.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/img/weipay.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">更新</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">数学</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/杂谈与爱好//" class="article-tag-list-link color1">杂谈与爱好</a>
+        			<a href="/categories/数学与统计//" class="article-tag-list-link color1">数学与统计</a>
         		</li>
       		
 		</ul>
 	</div>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/01/01/003.my_stocks/" class="archive-article-date">
-  	<time datetime="2018-12-31T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-01-01</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2021/06/14/042.OtherZ3py/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Other Z3 code</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/01/01/003.my_stocks/">持仓列表</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">更新</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">投资</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/杂谈与爱好//" class="article-tag-list-link color1">杂谈与爱好</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E7%90%86%E5%8F%99%E8%BF%B0"><span class="toc-number">1.</span> <span class="toc-text">定理叙述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#GF-2-m-%E7%9A%84%E9%98%B6%E4%B8%8E%E7%94%9F%E6%88%90%E5%85%83-%E4%B8%80"><span class="toc-number">2.</span> <span class="toc-text">GF($2^m$)的阶与生成元(一)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#GF-2-128-%E4%B8%AD%E7%9A%84%E7%94%9F%E6%88%90%E5%85%83"><span class="toc-number">3.</span> <span class="toc-text">GF($2^{128}$)中的生成元</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#GF-2-m-%E7%9A%84%E9%98%B6%E4%B8%8E%E7%94%9F%E6%88%90%E5%85%83-%E4%BA%8C"><span class="toc-number">4.</span> <span class="toc-text">GF($2^m$)的阶与生成元(二)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%B4%E6%98%8E"><span class="toc-number">5.</span> <span class="toc-text">说明</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+        
+    </div>
+</aside>
+
+
+
   
   
-    </div></section>
   
 
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/2019/">&amp;laquo; Prev</a><a class="page-number" href="/archives/2019/">1</a><span class="page-number current">2</span>
-    </nav>
+  
+
+  
+
   
 
 
@@ -329,8 +383,8 @@ var _hmt = _hmt || [];
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
